@@ -1,0 +1,7 @@
+<button (click)="onClick.emit()" [class]="class + ' ' + theme + (cursorDefault ? ' cursorDefault' : '')"
+        [disabled]="disabled"
+        class="btn d-flex align-items-center">
+    <ng-content select="[icon]"></ng-content>
+    <span>{{ title }}</span>
+    <ng-content></ng-content>
+</button>
