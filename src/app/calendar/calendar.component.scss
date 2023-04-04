@@ -1,0 +1,98 @@
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+  text-align: center;
+  background-color: #333;
+}
+
+h1 {
+  font-size: 36px;
+  margin-bottom: 20px;
+}
+
+.row {
+  display: flex;
+  margin-bottom: 20px;
+  flex-direction: column;
+}
+
+.btn {
+  border-radius: 5px;
+  padding: 10px 20px;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.btn-primary {
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th {
+  font-size: 18px;
+  font-weight: bold;
+  text-align: center;
+  padding: 10px;
+  background-color: #eee;
+}
+
+td {
+  padding: 10px;
+}
+
+.dia-mes-atual {
+  background-color: #fff;
+  color: #333;
+}
+
+.dia-outro-mes {
+  background-color: #eee;
+  color: #bbb;
+}
+
+.dia-selecionado {
+  background-color: #007bff;
+  color: #fff;
+}
+
+//saldjnaskudhasjklda
+
+button {
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+  outline: none;
+  border: 0;
+  vertical-align: middle;
+  text-decoration: none;
+  background: transparent;
+  padding: 0;
+  font-size: inherit;
+  font-family: inherit;
+}
+
+button.learn-more .circle .icon.arrow::before {
+  position: absolute;
+  content: "";
+  top: -0.29rem;
+  right: 0.0625rem;
+  width: 0.625rem;
+  height: 0.625rem;
+  border-top: 0.125rem solid #fff;
+  border-right: 0.125rem solid #fff;
+  transform: rotate(45deg);
+}
+
+.start {
+  align-self: flex-start;
+}
+
+.end {
+  align-self: flex-end;
+}
