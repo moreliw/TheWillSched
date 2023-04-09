@@ -1,35 +1,30 @@
 <div class="container">
-  <h1>Calendário</h1>
   <div class="row">
-    <div class="col">
-      <h3>{{ dataSelecionada.format("MMMM YYYY") }}</h3>
-    </div>
+    <button class="learn-more" (click)="mesAnterior()">
+      <span class="circle-back" aria-hidden="true">
+        <span class="icon arrow"></span>
+      </span>
+    </button>
 
-    <div class="col">
-      <button class="btn btn-primary" (click)="mesAnterior()">Anterior</button>
-    </div>
-    <div class="col">
-      <button class="learn-more">
-        <span class="circle" aria-hidden="true">
-          <span class="icon arrow"></span>
-        </span>
-      </button>
-    </div>
+    <h3>{{ dataSelecionada.format("MMMM YYYY") }}</h3>
 
-    <div class="col end">
-      <button class="btn btn-primary" (click)="mesSeguinte()">Próximo</button>
-    </div>
+    <button class="learn-more" (click)="mesSeguinte()">
+      <span class="circle" aria-hidden="true">
+        <span class="icon arrow"></span>
+      </span>
+    </button>
   </div>
+
   <table class="table table-bordered">
     <thead>
       <tr>
-        <th>Domingo</th>
-        <th>Segunda-feira</th>
-        <th>Terça-feira</th>
-        <th>Quarta-feira</th>
-        <th>Quinta-feira</th>
-        <th>Sexta-feira</th>
-        <th>Sábado</th>
+        <th>DOM</th>
+        <th>SEG</th>
+        <th>TER</th>
+        <th>QUA</th>
+        <th>QUI</th>
+        <th>SEX</th>
+        <th>SÁB</th>
       </tr>
     </thead>
     <tbody>

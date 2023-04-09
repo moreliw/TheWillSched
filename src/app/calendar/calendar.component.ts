@@ -59,6 +59,7 @@ export class CalendarComponent implements OnInit {
     const primeiroDia = moment(this.dataSelecionada)
       .startOf('month')
       .startOf('week');
+    console.log(primeiroDia);
     const ultimoDia = moment(this.dataSelecionada).endOf('month').endOf('week');
     let dia = primeiroDia;
     let semana = 0;
@@ -80,6 +81,7 @@ export class CalendarComponent implements OnInit {
   }
 
   ngOnInit() {
+    console.log(new Date().getMonth());
     this.gerarSemanas();
   }
 
