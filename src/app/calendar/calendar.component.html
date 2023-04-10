@@ -1,21 +1,24 @@
 <div class="container">
   <div class="row">
-    <button class="learn-more" (click)="mesAnterior()">
+    <button class="learn-more" (click)="previousMonth()">
       <span class="circle-back" aria-hidden="true">
         <span class="icon arrow"></span>
       </span>
     </button>
 
-    <h3>{{ dataSelecionada.format("MMMM YYYY") }}</h3>
+    <h3>{{ reuturnMonthAndYear() }}</h3>
 
-    <button class="learn-more" (click)="mesSeguinte()">
+    <button class="learn-more" (click)="nextMonth()">
       <span class="circle" aria-hidden="true">
         <span class="icon arrow"></span>
       </span>
     </button>
   </div>
 
+  <hr class="line" />
+
   <table class="table table-bordered">
+    <caption></caption>
     <thead>
       <tr>
         <th>DOM</th>
@@ -28,16 +31,17 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let semana of semanas">
-        <td *ngFor="let dia of semana" (click)="selecionarData(dia)">
+      <tr *ngFor="let semana of weeks">
+        <td *ngFor="let day of semana" (click)="selecionarData(day)">
           <div
             [ngClass]="{
-              'dia-selecionado': dia.isSame(dataSelecionada, 'day'),
-              'dia-mes-atual': dia.isSame(hoje, 'month'),
-              'dia-outro-mes': !dia.isSame(dataSelecionada, 'month')
+              'select-day': day.selected,
+              'current-month-days': day.type === 'current',
+              'after-and-before-months':
+                day.type === 'previous' || day.type === 'next'
             }"
           >
-            {{ dia.date() }}
+            {{ day.day }}
           </div>
         </td>
       </tr>

@@ -7,7 +7,12 @@ import { SharedComponentsModule } from './shared/shared-components/shared-compon
 import { CalendarComponent } from './calendar/calendar.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 @NgModule({
-  declarations: [AppComponent, ProductStockListComponent, CalendarComponent, DashboardComponent],
+  declarations: [
+    AppComponent,
+    ProductStockListComponent,
+    CalendarComponent,
+    DashboardComponent,
+  ],
   imports: [BrowserModule, AppRoutingModule, SharedComponentsModule],
   providers: [],
   bootstrap: [AppComponent],

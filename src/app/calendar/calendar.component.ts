@@ -7,91 +7,127 @@ import * as moment from 'moment';
   styleUrls: ['./calendar.component.scss'],
 })
 export class CalendarComponent implements OnInit {
-  hoje: moment.Moment = moment();
-  dataSelecionada: moment.Moment = moment();
-  currentDate = new Date();
-  weeks: number[][] | undefined;
-  semanas: moment.Moment[][] = [];
-
-  getDaysInMonth() {
-    return new Date(
-      this.currentDate.getFullYear(),
-      this.currentDate.getMonth() + 1,
-      0
-    ).getDate();
-  }
-
-  getFirstDayOfMonth() {
-    return new Date(
-      this.currentDate.getFullYear(),
-      this.currentDate.getMonth(),
-      1
-    ).getDay();
-  }
-
-  generateCalendar() {
-    const daysInMonth = this.getDaysInMonth();
-    const firstDayOfMonth = this.getFirstDayOfMonth();
-
-    const weeks: number[][] = [[]];
-    let currentWeek = 0;
-
-    for (let i = 1; i <= daysInMonth; i++) {
-      if (i === 1) {
-        for (let j = 0; j < firstDayOfMonth; j++) {
-          weeks[currentWeek].push();
-        }
-      }
-
-      weeks[currentWeek].push(i);
-
-      if (weeks[currentWeek].length === 7 && i < daysInMonth) {
-        currentWeek++;
-        weeks.push([]);
-      }
-    }
-
-    this.weeks = weeks;
-  }
-
-  gerarSemanas(): void {
-    const semanas: moment.Moment[][] = [];
-    const primeiroDia = moment(this.dataSelecionada)
-      .startOf('month')
-      .startOf('week');
-    console.log(primeiroDia);
-    const ultimoDia = moment(this.dataSelecionada).endOf('month').endOf('week');
-    let dia = primeiroDia;
-    let semana = 0;
-    while (dia.isSameOrBefore(ultimoDia)) {
-      if (!semanas[semana]) {
-        semanas[semana] = [];
-      }
-      semanas[semana].push(moment(dia));
-      dia = moment(dia).add(1, 'day');
-      if (dia.day() === 0) {
-        semana++;
-      }
-    }
-    this.semanas = semanas;
-  }
-
-  selecionarData(dia: moment.Moment): void {
-    this.dataSelecionada = moment(dia);
-  }
+  today: Date = new Date();
+  fixToday: Date = new Date();
+  weeks: InfoDays[][] | undefined;
+  daysInMonth: InfoDays[] = [];
 
   ngOnInit() {
-    console.log(new Date().getMonth());
-    this.gerarSemanas();
+    this.getMonthDays(this.today.getFullYear(), this.today.getMonth());
   }
 
-  mesAnterior(): void {
-    this.dataSelecionada = moment(this.dataSelecionada).subtract(1, 'month');
-    this.gerarSemanas();
+  selecionarData(day: InfoDays): void {
+    if (day.type === 'previous') {
+      this.previousMonth();
+    }
+
+    if (day.type === 'next') {
+      this.nextMonth();
+    }
+    this.daysInMonth.forEach((d) => (d.selected = false));
+    day.selected = true;
   }
 
-  mesSeguinte(): void {
-    this.dataSelecionada = moment(this.dataSelecionada).add(1, 'month');
-    this.gerarSemanas();
+  getMonthDays(year: number, month: number): void {
+    const days: number[] = [];
+
+    // Primeiro dia do mês
+    const firstDay = new Date(year, month, 1);
+    // Último dia do mês anterior
+    const lastDayPreviousMonth = new Date(year, month, 0);
+    // Último dia do mês atual
+    const lastDay = new Date(year, month + 1, 0);
+
+    // Dias do mês anterior
+    for (let i = firstDay.getDay() - 1; i >= 0; i--) {
+      days.push(lastDayPreviousMonth.getDate() - i);
+      this.daysInMonth.push({
+        day: lastDayPreviousMonth.getDate() - i,
+        type: 'previous',
+      });
+    }
+
+    // Dias do mês atual
+    for (let i = 1; i <= lastDay.getDate(); i++) {
+      days.push(i);
+      this.daysInMonth.push({
+        day: i,
+        type: 'current',
+        selected:
+          i === this.fixToday.getDate() && month === this.fixToday.getMonth(),
+      });
+    }
+
+    // Dias do próximo mês
+    const nextMonthDays = 7 - (days.length % 7);
+    if (nextMonthDays < 7) {
+      for (let i = 1; i <= nextMonthDays; i++) {
+        days.push(i);
+        this.daysInMonth.push({
+          day: i,
+          type: 'next',
+        });
+      }
+    }
+
+    this.weeks = this.getDaysInWeeks(this.daysInMonth);
   }
+
+  getDaysInWeeks(days: InfoDays[]): InfoDays[][] {
+    const weeks: InfoDays[][] = [];
+
+    for (let i = 0; i < days.length; i += 7) {
+      weeks.push(days.slice(i, i + 7));
+    }
+
+    return weeks;
+  }
+
+  nextMonth(): void {
+    const date = moment(this.today).add(1, 'month').toDate();
+    this.today = date;
+    this.daysInMonth = [];
+    this.weeks = [];
+    this.getMonthDays(date.getFullYear(), date.getMonth());
+  }
+
+  previousMonth(): void {
+    const date = moment(this.today).subtract(1, 'month').toDate();
+    this.today = date;
+    this.daysInMonth = [];
+    this.getMonthDays(date.getFullYear(), date.getMonth());
+  }
+
+  returnMonthName(month: number): string {
+    const months = [
+      'Janeiro',
+      'Fevereiro',
+      'Março',
+      'Abril',
+      'Maio',
+      'Junho',
+      'Julho',
+      'Agosto',
+      'Setembro',
+      'Outubro',
+      'Novembro',
+      'Dezembro',
+    ];
+
+    return months[month];
+  }
+
+  reuturnMonthAndYear(): string {
+    return `${this.returnMonthName(
+      this.today.getMonth()
+    )} ${this.today.getFullYear()}`;
+  }
+}
+
+class InfoDays {
+  constructor(
+    public day?: number,
+    public type?: string,
+    public selected?: boolean
+  ) {}
 }

@@ -4,12 +4,7 @@
   text-align: center;
   background-color: #333;
   border-radius: 10%;
-  padding: 10px;
-}
-
-h1 {
-  font-size: 36px;
-  margin-bottom: 20px;
+  padding: 20px;
 }
 
 .row {
@@ -19,26 +14,13 @@ h1 {
   align-items: center;
 }
 
-.btn {
-  border-radius: 5px;
-  padding: 10px 20px;
-  font-size: 18px;
-  font-weight: bold;
-}
-
-.btn-primary {
-  background-color: #007bff;
-  color: #fff;
-  border: none;
-}
-
 th {
   text-align: center;
   padding-bottom: 20px;
   color: #fff;
 }
 
-.dia-mes-atual {
+.current-month-days {
   color: #fff;
   border-radius: 50%;
   height: 3rem;
@@ -47,9 +29,10 @@ th {
   place-items: center;
   font-weight: bold;
   position: relative;
+  cursor: pointer;
 }
 
-.dia-outro-mes {
+.after-and-before-months {
   color: #8b8b8b;
   border-radius: 50%;
   height: 3rem;
@@ -58,10 +41,11 @@ th {
   place-items: center;
   font-weight: bold;
   position: relative;
+  cursor: pointer;
 }
 
-.dia-selecionado {
-  background-color: #007bff;
+.select-day {
+  background-color: #5d5d5d;
   color: #fff;
   border-radius: 50%;
   height: 3rem;
@@ -108,14 +92,6 @@ button.learn-more .circle-back .icon.arrow::before {
   transform: rotate(-135deg);
 }
 
-.start {
-  align-self: flex-start;
-}
-
-.end {
-  align-self: flex-end;
-}
-
 .td {
   appearance: auto !important;
   display: none;
@@ -132,6 +108,8 @@ h3 {
   color: #fff;
 }
 
-.mes {
-  flex-direction: flex;
+.line {
+  border: none;
+  border-top: 1px solid rgb(138, 138, 138);
+  margin-bottom: 20px;
 }
