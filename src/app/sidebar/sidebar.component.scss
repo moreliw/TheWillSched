@@ -1,0 +1,34 @@
+.container {
+  display: flex;
+}
+
+.sidebar {
+  width: 200px;
+  height: 84vh;
+  background-color: #333;
+  color: #fff;
+  position: fixed;
+  left: -150px;
+  transition: all 0.3s ease-out;
+}
+
+.main-content {
+  flex: 1;
+  height: 100vh;
+  background-color: #fff;
+}
+
+.show-sidebar .sidebar {
+  left: 0;
+}
+
+.container:hover .sidebar {
+  left: 0;
+}
+
+.menu {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+}
