@@ -6,12 +6,14 @@ import { ProductStockListComponent } from './product-stock-list/product-stock-li
 import { SharedComponentsModule } from './shared/shared-components/shared-components.module';
 import { CalendarComponent } from './calendar/calendar.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { NavbarComponent } from './navbar/navbar.component';
 @NgModule({
   declarations: [
     AppComponent,
     ProductStockListComponent,
     CalendarComponent,
     DashboardComponent,
+    NavbarComponent,
   ],
   imports: [BrowserModule, AppRoutingModule, SharedComponentsModule],
   providers: [],
