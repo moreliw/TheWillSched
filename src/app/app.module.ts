@@ -7,6 +7,7 @@ import { SharedComponentsModule } from './shared/shared-components/shared-compon
 import { CalendarComponent } from './calendar/calendar.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { NavbarComponent } from './navbar/navbar.component';
+import { UtilbarComponent } from './utilbar/utilbar.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -14,6 +15,7 @@ import { NavbarComponent } from './navbar/navbar.component';
     CalendarComponent,
     DashboardComponent,
     NavbarComponent,
+    UtilbarComponent,
   ],
   imports: [BrowserModule, AppRoutingModule, SharedComponentsModule],
   providers: [],

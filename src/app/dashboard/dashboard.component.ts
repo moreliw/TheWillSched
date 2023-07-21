@@ -7,4 +7,7 @@ import { Component } from '@angular/core';
 })
 export class DashboardComponent {
 
+  botao(){
+    console.log("Alex & Phatrycio <3")
+  }
 }

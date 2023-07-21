@@ -1,8 +1,10 @@
 .menu-container {
   width: 200px;
   height: 100%;
-  background-color: #f1f1f1;
-  padding: 20px;
+  background-color: #1b1b1b;
+  padding-left: 20px;
+  padding-top: 20px;
+  padding-bottom: 20px;
 }
 
 .menu-list {
@@ -12,11 +14,27 @@
 }
 
 .menu-item {
+  color: #ffffff;
   margin-bottom: 10px;
   cursor: pointer;
+  padding-left: 15px;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  border-bottom-left-radius: 25px;
+  border-top-left-radius: 25px;
 }
 
 .menu-item:hover {
-  color: #fff;
-  background-color: #333;
+  color: #000000;
+  background-color: #ffffff;
+}
+
+.menu-item {
+  padding-left: 30px;
+  background-repeat: no-repeat;
+  background-position: left center;
+}
+
+.icon-ajust {
+  margin-right: 10px;
 }
