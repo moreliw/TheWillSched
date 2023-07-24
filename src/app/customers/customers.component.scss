@@ -1,0 +1,99 @@
+.table-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+  overflow-x: auto;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th, td {
+  padding: 8px;
+  border: 1px solid #ddd;
+  text-align: left;
+}
+
+thead {
+  background-color: #f2f2f2;
+}
+
+.tela {
+  padding: 10px;
+}
+
+button {
+  width: 180px;
+  height: 50px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  background: #1e924e;
+  border: none;
+  border-radius: 5px;
+  box-shadow: 1px 1px 3px rgba(0,0,0,0.15);
+  background: #1e924e;
+ }
+
+ button, button span {
+  transition: 200ms;
+ }
+
+ button .text {
+  transform: translateX(15px);
+  color: white;
+  font-weight: bold;
+ }
+
+ button .icon {
+  position: absolute;
+  transform: translateX(125px);
+  height: 40px;
+  width: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+ }
+
+ button svg {
+  width: 15px;
+  fill: #eee;
+ }
+
+ button:hover {
+  background: #1e924e;
+ }
+
+ button:hover .text {
+  color: transparent;
+ }
+
+ button:hover .icon {
+  width: 150px;
+  border-left: none;
+  transform: translateX(10px);
+ }
+
+ button:focus {
+  outline: none;
+ }
+
+ button:active .icon svg {
+  transform: scale(0.8);
+ }
+
+ .just-button {
+  align-self: center;
+ }
+
+ .button-title {
+  display: flex !important;
+  justify-content: space-between;
+ }
+
+.icon-adjust {
+  font-size: large;
+  color: #ffffff;
+}
