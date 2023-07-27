@@ -1,0 +1,33 @@
+.navbar {
+
+    header {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        position: fixed;
+        top: 0;
+        left: 78px;
+
+        .logo-details {
+            display: flex;
+            align-items: center;
+        }
+
+        .logo_name {
+            color: var(--primary);
+            font-size: 20px;
+            font-weight: 600;
+            transition: all 0.5s ease;
+        }
+
+        em {
+            color: var(--primary);
+            height: 60px;
+            min-width: 50px;
+            font-size: 28px;
+            text-align: center;
+            line-height: 60px;
+          }
+    }
+
+}

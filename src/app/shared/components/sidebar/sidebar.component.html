@@ -1,0 +1,36 @@
+<div class="sidebar">
+  
+    <div class="logo-details">
+        <em aria-hidden="true" class='bx bxl-c-plus-plus icon'></em>
+        <div class="logo_name">CodingLab</div>
+        <em (click)="toggle()" aria-hidden="true" class='bx bx-menu' id="btn"></em>
+    </div>
+
+    <ul class="nav-list">
+      <li>
+        <em (click)="toggle()" aria-hidden="true" class='bx bx-search'></em>
+        <input #search (input)="searchItemMenu(search.value)" type="text" placeholder="Search...">
+        <span class="tooltip">Search</span>
+      </li>
+
+      <li *ngFor="let m of menu">
+        <a [routerLink]="[m.path]" [routerLinkActive]="['active']">
+          <em aria-hidden="true" [class]="'bx ' + m.icon"></em>
+          <span class="links_name">{{ m.link_name }}</span>
+        </a>
+         <span class="tooltip">{{ m.tooltip }}</span>
+      </li>
+
+     <li class="profile">
+         <div class="profile-details">
+           <img src="https://avatars.githubusercontent.com/u/49327135?v=4" alt="profileImg">
+           <div class="name_job">
+             <div class="name">Elissandro Soares</div>
+             <div class="job">Web designer</div>
+           </div>
+         </div>
+         <em aria-hidden="true" class='bx bx-log-out' id="log_out"></em>
+     </li>
+
+    </ul>
+</div>

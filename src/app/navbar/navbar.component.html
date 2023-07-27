@@ -1,7 +1,41 @@
 <div class="menu-container">
   <ul class="menu-list">
-    <li class="menu-item" routerLink="/dashboard"><i class="fas fa-chart-bar icon-ajust"></i>Dashboard</li>
-    <li class="menu-item" routerLink="/customers"><i class="fas fa-users icon-ajust"></i>Clientes</li>
-    <li class="menu-item" routerLink="/scheduling"><i class="fas fa-calendar-alt icon-ajust"></i>Agendamentos</li>
+
+    <li
+      class="menu-item"
+      routerLink="/dashboard"
+      routerLinkActive="class1"
+      (mouseenter)="onMouseEnter(1)"
+      (mouseleave)="onMouseLeave(1)"
+      (click)="changeColorIcon(1)"
+    >
+      <img
+        src="../../assets/icons/dashboard.svg"
+        alt="Ícone SVG"
+        class="icon-card"
+        [ngClass]="{ 'icon-card-hover': isHoverDashboard }"
+      >
+      Dashboard
+    </li>
+
+    <li class="menu-item" routerLink="/customers" routerLinkActive="class1" (mouseenter)="onMouseEnter(2)" (mouseleave)="onMouseLeave(2)" (click)="changeColorIcon(2)">
+      <img src="../../assets/icons/users-white.svg" alt="Ícone SVG" class="icon-card" [ngClass]="{ 'icon-card-hover': isHoverCustomers }">
+      Clientes
+    </li>
+
+    <li class="menu-item" routerLink="/scheduling" routerLinkActive="class1" (mouseenter)="onMouseEnter(3)" (mouseleave)="onMouseLeave(3)" (click)="changeColorIcon(3)">
+      <img src="../../assets/icons/clipboard-white.svg" alt="Ícone SVG" class="icon-card" [ngClass]="{ 'icon-card-hover': isHoverScheduling }">
+      Agendamentos
+    </li>
+
+    <li class="menu-item" routerLink="/servicos" routerLinkActive="class1" (mouseenter)="onMouseEnter(4)" (mouseleave)="onMouseLeave(4)" (click)="changeColorIcon(4)">
+      <img src="../../assets/icons/checklist-white.svg" alt="Ícone SVG" class="icon-card" [ngClass]="{ 'icon-card-hover': isHoverServices }">
+      Serviços
+    </li>
+
+    <li class="menu-item" routerLink="/finance" routerLinkActive="class1" (mouseenter)="onMouseEnter(5)" (mouseleave)="onMouseLeave(5)" (click)="changeColorIcon(5)">
+      <img src="../../assets/icons/cash-white.svg" alt="Ícone SVG" class="icon-card" [ngClass]="{ 'icon-card-hover': isHoverFinance }">
+      Financeiro
+    </li>
   </ul>
 </div>

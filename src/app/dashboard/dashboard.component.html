@@ -1,8 +1,8 @@
 <div class="grid-container">
-  <div class="card card1">
-    <div class="mini-card1 grid-card">
+  <div class="card1">
+    <div class="mini-card1 grid-card" (click)="goTo('scheduling')">
       <div class="area1">
-        <img src="../../assets/icons/calendar.svg" alt="Ícone SVG" class="icon-card">
+        <img src="../../assets/icons/clipboard.svg" alt="Ícone SVG" class="icon-card">
       </div>
       <div class="area2">
         AGENDAMENTOS HOJE
@@ -17,7 +17,7 @@
   </div>
 
   <div class="card card2">
-    <div class="mini-card1 grid-card">
+    <div class="mini-card1 grid-card" (click)="goTo('customers')">
       <div class="area1">
         <img src="../../assets/icons/user.svg" alt="Ícone SVG" class="icon-card">
       </div>
@@ -27,19 +27,19 @@
       <h1 class="area3">
         67
       </h1>
-      <div class="area4">
+      <div class="area4" (click)="openModal()">
         <img src="../../assets/icons/add.svg" alt="Ícone SVG" class="icon-card-add">
       </div>
     </div>
   </div>
 
   <div class="card card3">
-    <div class="mini-card1 grid-card">
+    <div class="mini-card1 grid-card" (click)="goTo('servicos')">
       <div class="area1">
-        <img src="../../assets/icons/cash.svg" alt="Ícone SVG" class="icon-card">
+        <img src="../../assets/icons/checklist.svg" alt="Ícone SVG" class="icon-card">
       </div>
       <div class="area2">
-        FINANCEIRO
+        SERVIÇOS
       </div>
       <h1 class="area3">
         12
