@@ -4,7 +4,7 @@
   text-align: center;
   background-color: #333;
   border-radius: 10%;
-  padding: 20px;
+  padding: 10px;
 }
 
 .row {
@@ -16,7 +16,6 @@
 
 th {
   text-align: center;
-  padding-bottom: 20px;
   color: #fff;
 }
 
@@ -112,4 +111,9 @@ h3 {
   border: none;
   border-top: 1px solid rgb(138, 138, 138);
   margin-bottom: 20px;
+}
+
+.table {
+  font-size: small;
+  border-spacing: 0px !important;
 }

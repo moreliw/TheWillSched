@@ -1,22 +1,24 @@
 import { NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
-import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { FormsModule } from '@angular/forms';
 import { CalendarComponent } from './calendar/calendar.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { UtilbarComponent } from './utilbar/utilbar.component';
 import { CustomersComponent } from './customers/customers.component';
 import { SchedulingComponent } from './scheduling/scheduling.component';
-import { NgxPaginationModule } from 'ngx-pagination';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatPaginatorModule } from '@angular/material/paginator';
-import { SharedModule } from './shared/components/shared.module';
 import { Util } from './shared/common/util';
 import { ServicosComponent } from './servicos/servicos.component';
 import { FinanceComponent } from './finance/finance.component';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { CustomerFormComponent } from './customer-form/customer-form.component';
+import { NgbModalModule, NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { CommonModule } from '@angular/common';
+import { SharedModule } from './shared/components/shared.module';
+import { BrowserModule } from '@angular/platform-browser';
+import { AppRoutingModule } from './app-routing.module';
+import { NgxPaginationModule } from 'ngx-pagination';
+import { SidebarComponent } from './sidebar/sidebar.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +31,7 @@ import { CustomerFormComponent } from './customer-form/customer-form.component';
     SchedulingComponent,
     ServicosComponent,
     FinanceComponent,
-    CustomerFormComponent,
+    SidebarComponent,
   ],
   imports: [
     BrowserModule,
@@ -38,7 +40,10 @@ import { CustomerFormComponent } from './customer-form/customer-form.component';
     NgxPaginationModule,
     BrowserAnimationsModule,
     MatPaginatorModule,
-    NgbModule
+    NgbModule,
+    CommonModule,
+    NgbModalModule,
+    FormsModule
   ],
   providers: [Util],
   bootstrap: [AppComponent],

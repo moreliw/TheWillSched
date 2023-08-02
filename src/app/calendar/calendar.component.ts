@@ -11,9 +11,11 @@ export class CalendarComponent implements OnInit {
   fixToday: Date = new Date();
   weeks: InfoDays[][] | undefined;
   daysInMonth: InfoDays[] = [];
+  daySelected: number | undefined;
 
   ngOnInit() {
     this.getMonthDays(this.today.getFullYear(), this.today.getMonth());
+    this.daySelected = this.today.getDate();
   }
 
   selecionarData(day: InfoDays): void {
@@ -26,19 +28,16 @@ export class CalendarComponent implements OnInit {
     }
     this.daysInMonth.forEach((d) => (d.selected = false));
     day.selected = true;
+    this.daySelected = day.day;
   }
 
   getMonthDays(year: number, month: number): void {
-    const days: number[] = [];
 
-    // Primeiro dia do mês
+    const days: number[] = [];
     const firstDay = new Date(year, month, 1);
-    // Último dia do mês anterior
     const lastDayPreviousMonth = new Date(year, month, 0);
-    // Último dia do mês atual
     const lastDay = new Date(year, month + 1, 0);
 
-    // Dias do mês anterior
     for (let i = firstDay.getDay() - 1; i >= 0; i--) {
       days.push(lastDayPreviousMonth.getDate() - i);
       this.daysInMonth.push({
@@ -47,7 +46,6 @@ export class CalendarComponent implements OnInit {
       });
     }
 
-    // Dias do mês atual
     for (let i = 1; i <= lastDay.getDate(); i++) {
       days.push(i);
       this.daysInMonth.push({
@@ -58,7 +56,6 @@ export class CalendarComponent implements OnInit {
       });
     }
 
-    // Dias do próximo mês
     const nextMonthDays = 7 - (days.length % 7);
     if (nextMonthDays < 7) {
       for (let i = 1; i <= nextMonthDays; i++) {

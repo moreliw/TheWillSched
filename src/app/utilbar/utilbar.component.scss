@@ -3,3 +3,14 @@
   background-color: #f6f6ff;
   padding: 20px;
 }
+
+.icon {
+  max-block-size: 35px;
+  cursor: pointer;
+}
+
+.icon-content {
+  margin-bottom: 20px;
+  display: flex;
+  justify-content: end;
+}
