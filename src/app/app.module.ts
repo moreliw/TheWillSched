@@ -19,6 +19,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { SidebarComponent } from './sidebar/sidebar.component';
+import { SettingsComponent } from './settings/settings.component';
 
 @NgModule({
   declarations: [
@@ -32,6 +33,7 @@ import { SidebarComponent } from './sidebar/sidebar.component';
     ServicosComponent,
     FinanceComponent,
     SidebarComponent,
+    SettingsComponent,
   ],
   imports: [
     BrowserModule,

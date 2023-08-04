@@ -3,12 +3,12 @@
     <img class="img-size" src="../assets/images/logo-will.png">
   </a>
   <ul class="side-menu">
-      <li routerLink="/dashboard" class="active"><a><i class='bx bxs-dashboard'></i>Dashboard</a></li>
-      <li routerLink="/scheduling"><a><i class='bx bx-calendar-check'></i>Agendamentos</a></li>
-      <li routerLink="/customers"><a><i class='bx bx-group'></i>Clientes</a></li>
-      <li routerLink="/servicos"><a><i class='bx bx-receipt'></i>Serviços</a></li>
-      <li routerLink="/finance"><a><i class='bx bx-dollar-circle'></i>Financeiro</a></li>
-      <li routerLink="/scheduling"><a><i class='bx bx-cog' ></i>Configurações</a></li>
+      <li routerLink="/dashboard" [class.active]="activeRoute === '/dashboard'"><a><i class='bx bxs-dashboard'></i>Dashboard</a></li>
+      <li routerLink="/scheduling" [class.active]="activeRoute === '/scheduling'"><a><i class='bx bx-calendar-check'></i>Agendamentos</a></li>
+      <li routerLink="/customers" [class.active]="activeRoute === '/customers'"><a><i class='bx bx-group'></i>Clientes</a></li>
+      <li routerLink="/servicos" [class.active]="activeRoute === '/servicos'"><a><i class='bx bx-receipt'></i>Serviços</a></li>
+      <li routerLink="/finance" [class.active]="activeRoute === '/finance'"><a><i class='bx bx-dollar-circle'></i>Financeiro</a></li>
+      <li routerLink="/settings" [class.active]="activeRoute === '/settings'"><a><i class='bx bx-cog' ></i>Configurações</a></li>
   </ul>
   <ul class="side-menu">
       <li>

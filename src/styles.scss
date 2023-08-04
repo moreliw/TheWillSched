@@ -165,7 +165,6 @@ body{
 .content main{
   width: 100%;
   padding: 36px 24px;
-  max-height: calc(100vh - 56px);
 }
 
 .content main .header{
@@ -479,3 +478,20 @@ body{
     }
 
 }
+
+.d-flex {
+  display: flex;
+}
+
+.flex-column {
+  flex-direction: column;
+}
+
+.w-100 {
+  width: 100%;
+}
+
+.text-align-center {
+  text-align: center;
+}
+
