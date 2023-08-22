@@ -1,0 +1,387 @@
+.table-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(330px, 1fr));
+  gap: 1rem;
+  overflow-x: auto;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+thead {
+  background-color: #f2f2f2;
+}
+
+.tela {
+  padding: 10px;
+}
+
+.icon-adjust {
+  font-size: large;
+  color: #ffffff;
+}
+
+.active {
+  position: relative;
+  box-shadow: 6px -6px 11px 0 rgb(0 0 0 / 8%);
+}
+
+.active::before {
+  position: absolute;
+  content: "";
+  width: 4px;
+  height: 55%;
+  background-color: #346ee1;
+  top: 20px;
+  left: 0;
+}
+
+.header {
+  margin-bottom: 20px;
+}
+
+.client-info {
+  font-size: 0.75rem;
+  line-height: 1rem;
+  font-weight: 600;
+}
+
+.action-buttons {
+  background-color: white;
+  border: none;
+}
+
+.mr-1 {
+  margin-right: 10px;
+}
+
+.cliente-imagem {
+  width: 50px;
+  height: 50px;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+.customers {
+  width: 100%;
+  padding: 36px 24px;
+  max-height: calc(100vh - 56px);
+  position: v;
+}
+
+.customers .header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  grid-gap: 16px;
+  flex-wrap: wrap;
+}
+
+.customers .header .left h1 {
+  font-size: 36px;
+  font-weight: 600;
+  margin-bottom: 10px;
+  color: var(--dark);
+}
+
+.customers .header .left .breadcrumb {
+  display: flex;
+  align-items: center;
+  grid-gap: 16px;
+}
+
+.customers .header .left .breadcrumb li {
+  color: var(--dark);
+}
+
+.customers .header .left .breadcrumb li a {
+  color: var(--dark-grey);
+  pointer-events: none;
+}
+
+.customers .header .left .breadcrumb li a.active {
+  color: var(--primary);
+  pointer-events: none;
+}
+
+.customers .header .report {
+  height: 36px;
+  padding: 0 16px;
+  border-radius: 36px;
+  background: var(--primary);
+  color: var(--light);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  grid-gap: 10px;
+  font-weight: 500;
+}
+
+.customers .insights {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(330px, 1fr));
+  grid-gap: 24px;
+  margin-top: 36px;
+}
+
+.customers .insights li {
+  padding: 24px;
+  background: var(--light);
+  border-radius: 20px;
+  display: flow;
+  align-items: center;
+  grid-gap: 24px;
+  cursor: pointer;
+  min-width: 300px;
+}
+
+.customers .insights li .bx {
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.customers .insights li .info h3 {
+  font-size: 20px;
+  font-weight: 600;
+  color: var(--dark);
+}
+
+.customers .insights li .info p {
+  color: var(--dark);
+}
+
+.customers .bottom-data {
+  display: flex;
+  flex-wrap: wrap;
+  grid-gap: 24px;
+  margin-top: 24px;
+  width: 100%;
+  color: var(--dark);
+}
+
+.customers .bottom-data > div {
+  border-radius: 20px;
+  background: var(--light);
+  padding: 24px;
+  overflow-x: auto;
+}
+
+.customers .bottom-data .header {
+  display: flex;
+  align-items: center;
+  grid-gap: 16px;
+  margin-bottom: 24px;
+}
+
+.customers .bottom-data .header h3 {
+  margin-right: auto;
+  font-size: 24px;
+  font-weight: 600;
+}
+
+.customers .bottom-data .header .bx {
+  cursor: pointer;
+}
+
+.customers .bottom-data .orders {
+  flex-grow: 1;
+  flex-basis: 500px;
+}
+
+.customers .bottom-data .orders table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.customers .bottom-data .orders table th {
+  padding-bottom: 12px;
+  font-size: 13px;
+  text-align: left;
+  border-bottom: 1px solid var(--grey);
+}
+
+.customers .bottom-data .orders table td {
+  padding: 16px 0;
+}
+
+.customers .bottom-data .orders table tr td:first-child {
+  display: flex;
+  align-items: center;
+  grid-gap: 12px;
+  padding-left: 6px;
+}
+
+.customers .bottom-data .orders table td img {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.customers .bottom-data .orders table tbody tr {
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.customers .bottom-data .orders table tbody tr:hover {
+  background: var(--grey);
+}
+
+.customers .bottom-data .orders table tr td .status {
+  font-size: 10px;
+  padding: 6px 16px;
+  color: var(--light);
+  border-radius: 20px;
+  font-weight: 700;
+}
+
+.customers .bottom-data .orders table tr td .status.completed {
+  background: var(--success);
+}
+
+.customers .bottom-data .orders table tr td .status.process {
+  background: var(--primary);
+}
+
+.customers .bottom-data .orders table tr td .status.pending {
+  background: var(--warning);
+}
+
+.customers .bottom-data .orders table tr td .status.canceled {
+  background: var(--danger);
+}
+
+.customers .bottom-data .reminders {
+  flex-grow: 1;
+  flex-basis: 300px;
+}
+
+.customers .bottom-data .reminders .task-list {
+  width: 100%;
+}
+
+.customers .bottom-data .reminders .task-list li {
+  width: 100%;
+  margin-bottom: 16px;
+  background: var(--grey);
+  padding: 14px 10px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.customers .bottom-data .reminders .task-list li .task-title {
+  display: flex;
+  align-items: center;
+}
+
+.customers .bottom-data .reminders .task-list li .task-title p {
+  margin-left: 6px;
+}
+
+.customers .bottom-data .reminders .task-list li .bx {
+  cursor: pointer;
+}
+
+.customers .bottom-data .reminders .task-list li.completed {
+  border-left: 10px solid var(--success);
+}
+
+.customers .bottom-data .reminders .task-list li.not-completed {
+  border-left: 10px solid var(--danger);
+}
+
+.customers .bottom-data .reminders .task-list li:last-child {
+  margin-bottom: 0;
+}
+
+@media screen and (max-width: 176px) {
+  .customers .insights {
+    grid-template-columns: 3fr;
+  }
+
+  .customers .bottom-data .header {
+    min-width: 340px;
+  }
+
+  .customers .bottom-data .orders table {
+    min-width: 340px;
+  }
+
+  .customers .bottom-data .reminders .task-list {
+    min-width: 340px;
+  }
+}
+
+.button-customer {
+  font-family: inherit;
+  font-size: 20px;
+  background: royalblue;
+  color: white;
+  padding: 0.7em 1em;
+  padding-left: 0.9em;
+  display: flex;
+  align-items: center;
+  border: none;
+  border-radius: 16px;
+  overflow: hidden;
+  transition: all 0.2s;
+}
+
+.button-customer span {
+  display: block;
+  margin-left: 0.3em;
+  transition: all 0.3s ease-in-out;
+}
+
+.button-customer svg {
+  display: block;
+  transform-origin: center center;
+  transition: transform 0.3s ease-in-out;
+}
+
+.button-customer:hover .svg-wrapper {
+  animation: fly-1 0.6s ease-in-out infinite alternate;
+}
+
+.svg-wrapper {
+  display: flex;
+}
+
+.button-customer:hover .test {
+  transform: translateX(2.5rem);
+  transition: all 0.2s;
+}
+.button-customer:hover span {
+  transform: translateX(5em);
+}
+
+.button-customer:active {
+  transform: scale(0.95);
+}
+
+@keyframes fly-1 {
+  from {
+    transform: translateY(0.1em);
+  }
+
+  to {
+    transform: translateY(-0.1em);
+  }
+}
+
+.button-card {
+  margin-left: auto;
+  display: flex;
+  align-self: start;
+}
+
+.icon-button {
+  font-size: x-large !important;
+  background: none !important;
+}

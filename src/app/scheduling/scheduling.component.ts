@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { CustomersFormComponent } from '../customers/form/customers-form/customers-form.component';
 
 @Component({
   selector: 'app-scheduling',
@@ -6,12 +8,20 @@ import { Component } from '@angular/core';
   styleUrls: ['./scheduling.component.scss']
 })
 export class SchedulingComponent {
+  constructor(
+    private modalService: NgbModal) { }
+
   tabAgendadosSelected: boolean = true;
   tabAtendidosSelected: boolean = false;
   tabCancelSelected: boolean = false;
 
   newTag: boolean = false;
 
+  openModal(): void {
+    const modalRef = this.modalService.open(CustomersFormComponent, {size: 'lg',});
+    console.log(modalRef);
+  }
+  
   selecionarAgendados(): void {
     this.tabAgendadosSelected = true;
     this.tabAtendidosSelected = false;

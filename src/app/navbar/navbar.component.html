@@ -1,10 +1,12 @@
-<nav>
-  <i class='bx bx-menu'></i>
+<nav class="nav">
+  <i class="bx bx-menu"></i>
   <form action="#">
-      <div class="form-input">
-          <input type="search" placeholder="Pesquisar...">
-          <button class="search-btn" type="submit"><i class='bx bx-search'></i></button>
-      </div>
+    <div class="form-input">
+      <input type="search" placeholder="Pesquisar..." />
+      <button class="search-btn" type="submit">
+        <i class="bx bx-search"></i>
+      </button>
+    </div>
   </form>
 
   <label class="switch" for="theme-toggle">
@@ -13,16 +15,16 @@
       id="theme-toggle"
       [(ngModel)]="isThemeDarkEnabled"
       (ngModelChange)="theme()"
-      [ngClass]="{'dark': isThemeDarkEnabled}"
-    >
+      [ngClass]="{ dark: isThemeDarkEnabled }"
+    />
     <span class="slider"></span>
   </label>
 
   <a href="#" class="notif">
-      <i class='bx bx-bell'></i>
-      <span class="count">12</span>
+    <i class="bx bx-bell"></i>
+    <span class="count">12</span>
   </a>
   <a href="#" class="profile">
-      <img src="../assets/images/logo-test.png">
+    <img src="../assets/images/logo-test.png" />
   </a>
 </nav>

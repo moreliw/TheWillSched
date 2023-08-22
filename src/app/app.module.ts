@@ -1,11 +1,10 @@
 import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CalendarComponent } from './calendar/calendar.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { UtilbarComponent } from './utilbar/utilbar.component';
-import { CustomersComponent } from './customers/customers.component';
 import { SchedulingComponent } from './scheduling/scheduling.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatPaginatorModule } from '@angular/material/paginator';
@@ -13,13 +12,17 @@ import { Util } from './shared/common/util';
 import { ServicosComponent } from './servicos/servicos.component';
 import { FinanceComponent } from './finance/finance.component';
 import { NgbModalModule, NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { CommonModule } from '@angular/common';
+import { CommonModule, DatePipe } from '@angular/common';
 import { SharedModule } from './shared/components/shared.module';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { SettingsComponent } from './settings/settings.component';
+import { HttpClientModule } from '@angular/common/http';
+import { CustomersComponent } from './customers/components/customers.component';
+import { CustomersFormComponent } from './customers/form/customers-form/customers-form.component';
+import { ToastrModule } from 'ngx-toastr';
 
 @NgModule({
   declarations: [
@@ -34,6 +37,7 @@ import { SettingsComponent } from './settings/settings.component';
     FinanceComponent,
     SidebarComponent,
     SettingsComponent,
+    CustomersFormComponent,
   ],
   imports: [
     BrowserModule,
@@ -44,10 +48,13 @@ import { SettingsComponent } from './settings/settings.component';
     MatPaginatorModule,
     NgbModule,
     CommonModule,
+    FormsModule,
+    HttpClientModule,
     NgbModalModule,
-    FormsModule
+    ReactiveFormsModule,
+    ToastrModule.forRoot(),
   ],
-  providers: [Util],
+  providers: [Util, DatePipe],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

@@ -1,1 +1,64 @@
-<p>servicos works!</p>
+<main>
+    <div class="header">
+      <div class="left">
+          <h1>Serviços</h1>
+      </div>
+      <div>
+  
+        <button class="app-color-blue-1 add-scheduling">
+          <i class='bx bx-plus' ></i>Serviço</button>
+      </div>
+    </div>
+    <div class="table">
+      <!-- <div *ngIf="newTag" class="app-bg-yellow-3 new-tag">Novo</div> -->
+      <table class="w-100">
+          <thead>
+              <tr>
+                <th class="app-color-black column-table-left">Nome</th>
+                <th class="app-color-black column-table-left">Descrição</th>
+                <th class="app-color-black column-table-center">Preço</th>
+                <th class="app-color-black column-table-center">Data de criação</th>
+                <th class="app-color-black column-table-center">Data de atualização</th>
+                <th class="app-color-black column-table-right"></th>
+              </tr>
+          </thead>
+          <tbody>
+    
+            <tr class="app-border-1" *ngFor="let service of services | paginate: { itemsPerPage: 10, currentPage: currentPage }">
+    
+              <td class="text-align-left">
+                <div class="colunm-space">
+                    <span class="app-color-gray-1 principal-row-name">{{ service.name }}</span>
+                </div>
+              </td>
+    
+              <td class="text-align-left">
+                <span class="app-color-gray-1 principal-row-name">{{ service.description }}</span>
+              </td>
+    
+              <td class="text-align-center">
+                <span class="app-color-gray-1 principal-row-name"> {{ service.price }} </span>
+              </td>
+    
+              <td class="text-align-center">
+                <span class="app-color-gray-1 principal-row-name"> {{ service.creationDate }} </span>
+              </td>
+    
+              <td class="text-align-center">
+                <span class="app-color-gray-1 principal-row-name"> {{ service.updateDate }} </span>
+              </td>
+    
+              <td style="text-align: right">
+                <button class="action-buttons mr-1">
+                  <i class='bx bxs-edit'></i>
+                </button>
+                <button class="action-buttons">
+                  <i class='bx bx-trash'></i>
+                </button>
+              </td>
+          </tbody>
+      </table>
+      <pagination-controls class="pager" (pageChange)="currentPage = $event"></pagination-controls>
+    </div>
+    
+  </main>

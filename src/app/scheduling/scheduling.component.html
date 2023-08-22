@@ -1,122 +1,140 @@
-
 <main>
   <div class="header">
     <div class="left">
-        <h1>Agendamentos</h1>
+      <h1>Agendamentos</h1>
     </div>
   </div>
 
   <div class="container">
     <div class="bar-manager">
-          <img class="picture-dr" src="../../assets/images/img_dr.png">
-        <div class="text-bar-manager">
-            <span class="app-color-black text-info-bar-manager">Dr. Matheus Schuína</span>
-            <span class="app-color-gray-1 text-info-bar-manager-2">Clínico Geral</span>
-        </div>
-        <i class='bx bx-chevron-down app-color-gray-1 arrow'></i>
+      <img class="picture-dr" src="../../assets/images/img_dr.png" />
+      <div class="text-bar-manager">
+        <span class="app-color-black text-info-bar-manager"
+          >Dr. Matheus Schuína</span
+        >
+        <span class="app-color-gray-1 text-info-bar-manager-2"
+          >Clínico Geral</span
+        >
+      </div>
+      <i class="bx bx-chevron-down app-color-gray-1 arrow"></i>
     </div>
 
     <div class="mr-auto date-bar-manager">
-        <div class="app-bg-blue-2 date-info-bar-manager">
-            <i class='bx bx-calendar app-color-blue-1'></i>
-          </div>
-        <div class="text-bar-manager">
-            <span class="app-color-black" class="text-info-bar-manager">Hoje</span>
-            <span class="text-info-bar-manager app-color-blue-1">03 AGO 2023</span>
-        </div>
-        <i class='bx bx-chevron-down app-color-gray-1 arrow'></i>
+      <div class="app-bg-blue-2 date-info-bar-manager">
+        <i class="bx bx-calendar app-color-blue-1"></i>
+      </div>
+      <div class="text-bar-manager">
+        <span class="app-color-black" class="text-info-bar-manager">Hoje</span>
+        <span class="text-info-bar-manager app-color-blue-1">03 AGO 2023</span>
+      </div>
+      <i class="bx bx-chevron-down app-color-gray-1 arrow"></i>
     </div>
 
     <div>
-
-      <button class="app-color-blue-1 add-scheduling">
-        <i class='bx bx-plus' ></i>Agendamento</button>
+      <button class="app-color-blue-1 add-scheduling" (click)="openModal()">
+        <i class="bx bx-plus"></i>Agendamento
+      </button>
     </div>
   </div>
   <div class="table-direction d-flex">
     <div class="tabs d-flex">
-        <div
-          class="tab-manager d-flex"
-          [class.selected-tab]="tabAgendadosSelected"
-          [class.unselected-tab]="!tabAgendadosSelected"
-          (click)="selecionarAgendados()">
-            <span
-              [class.tab-text-select]="tabAgendadosSelected"
-              [class.tab-text-unselect]="!tabAgendadosSelected"
-            >06</span>
-            <span
-              [class.tab-text-select-2]="tabAgendadosSelected"
-              [class.tab-text-unselect-2]="!tabAgendadosSelected"
-            >Agendados</span>
-        </div>
+      <div
+        class="tab-manager d-flex"
+        [class.selected-tab]="tabAgendadosSelected"
+        [class.unselected-tab]="!tabAgendadosSelected"
+        (click)="selecionarAgendados()"
+      >
+        <span
+          [class.tab-text-select]="tabAgendadosSelected"
+          [class.tab-text-unselect]="!tabAgendadosSelected"
+          >06</span
+        >
+        <span
+          [class.tab-text-select-2]="tabAgendadosSelected"
+          [class.tab-text-unselect-2]="!tabAgendadosSelected"
+          >Agendados</span
+        >
+      </div>
 
-        <div
-          class="tab-manager d-flex"
-          [class.selected-tab]="tabAtendidosSelected"
-          [class.unselected-tab]="!tabAtendidosSelected"
-          (click)="selecionarAtendidos()">
-            <span
-              [class.tab-text-select]="tabAtendidosSelected"
-              [class.tab-text-unselect]="!tabAtendidosSelected"
-            >02</span>
-            <span
-              [class.tab-text-select-2]="tabAtendidosSelected"
-              [class.tab-text-unselect-2]="!tabAtendidosSelected"
-            >Atendidos</span>
-        </div>
+      <div
+        class="tab-manager d-flex"
+        [class.selected-tab]="tabAtendidosSelected"
+        [class.unselected-tab]="!tabAtendidosSelected"
+        (click)="selecionarAtendidos()"
+      >
+        <span
+          [class.tab-text-select]="tabAtendidosSelected"
+          [class.tab-text-unselect]="!tabAtendidosSelected"
+          >02</span
+        >
+        <span
+          [class.tab-text-select-2]="tabAtendidosSelected"
+          [class.tab-text-unselect-2]="!tabAtendidosSelected"
+          >Atendidos</span
+        >
+      </div>
 
-        <div class="tab-manager d-flex"
-          [class.selected-tab]="tabCancelSelected"
-          [class.unselected-tab]="!tabCancelSelected"
-          (click)="selecionarCancelados()">
-            <span
-              [class.tab-text-select]="tabCancelSelected"
-              [class.tab-text-unselect]="!tabCancelSelected"
-            >05</span>
-            <span
-              [class.tab-text-select-2]="tabCancelSelected"
-              [class.tab-text-unselect-2]="!tabCancelSelected">Cancelados</span>
-        </div>
+      <div
+        class="tab-manager d-flex"
+        [class.selected-tab]="tabCancelSelected"
+        [class.unselected-tab]="!tabCancelSelected"
+        (click)="selecionarCancelados()"
+      >
+        <span
+          [class.tab-text-select]="tabCancelSelected"
+          [class.tab-text-unselect]="!tabCancelSelected"
+          >05</span
+        >
+        <span
+          [class.tab-text-select-2]="tabCancelSelected"
+          [class.tab-text-unselect-2]="!tabCancelSelected"
+          >Cancelados</span
+        >
+      </div>
     </div>
 
     <div class="table">
-        <div *ngIf="newTag" class="app-bg-yellow-3 new-tag">Novo</div>
-        <table class="w-100">
-            <thead>
-                <tr>
-                    <th class="app-color-black column-table-left">Cliente</th>
-                    <th class="app-color-black column-table-center">Contato</th>
-                    <th class="app-color-black column-table-center">Hora</th>
-                    <th class="app-color-black column-table-center">Tempo estimado</th>
-                    <th></th>
-                    <th></th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr class="app-border-1">
-                    <td>
-                      <div class="client-column">
-                        <div class="client-picture"></div>
-                          <div class="d-flex flex-column">
-                              <span class="app-color-black principal-row-name">Varun Bose</span>
-                              <span class="app-color-gray-1 client-info">Male, 32 yr</span>
-                          </div>
-                      </div>
-                    </td>
+      <div *ngIf="newTag" class="app-bg-yellow-3 new-tag">Novo</div>
+      <table class="w-100">
+        <thead>
+          <tr>
+            <th class="app-color-black column-table-left">Cliente</th>
+            <th class="app-color-black column-table-center">Contato</th>
+            <th class="app-color-black column-table-center">Hora</th>
+            <th class="app-color-black column-table-center">Tempo estimado</th>
+            <th></th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="app-border-1">
+            <td>
+              <div class="client-column">
+                <div class="client-picture"></div>
+                <div class="d-flex flex-column">
+                  <span class="app-color-black principal-row-name"
+                    >Varun Bose</span
+                  >
+                  <span class="app-color-gray-1 client-info">Male, 32 yr</span>
+                </div>
+              </div>
+            </td>
 
-                    <td class="text-align-center">
-                      <span class="app-color-gray-1 principal-row-name">9999999999</span>
-                    </td>
+            <td class="text-align-center">
+              <span class="app-color-gray-1 principal-row-name"
+                >9999999999</span
+              >
+            </td>
 
-                    <td class="text-align-center">
-                      <span class="app-color-gray-1 principal-row-name">05:10PM</span>
-                    </td>
+            <td class="text-align-center">
+              <span class="app-color-gray-1 principal-row-name">05:10PM</span>
+            </td>
 
-                    <td class="text-align-center">
-                      <div class="app-color-red-1 principal-row-name">56 Mins</div>
-                    </td>
+            <td class="text-align-center">
+              <div class="app-color-red-1 principal-row-name">56 Mins</div>
+            </td>
 
-                    <!-- <td>
+            <!-- <td>
                         <button style="display: flex;
                         padding-top: 0.5rem;
                         padding-bottom: 0.5rem;
@@ -136,32 +154,36 @@
                         height: 1.5rem; " class="app-color-blue-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h.01M12 12h.01M19 12h.01M6 12a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0z"></path></svg>
 
                     </td> -->
-                </tr>
+          </tr>
 
-                  <tr class="app-border-1">
-                    <td>
-                      <div class="client-column">
-                        <div class="client-picture"></div>
-                          <div class="d-flex flex-column">
-                              <span class="app-color-black principal-row-name">Varun Bose</span>
-                              <span class="app-color-gray-1 client-info">Male, 32 yr</span>
-                          </div>
-                      </div>
-                    </td>
+          <tr class="app-border-1">
+            <td>
+              <div class="client-column">
+                <div class="client-picture"></div>
+                <div class="d-flex flex-column">
+                  <span class="app-color-black principal-row-name"
+                    >Varun Bose</span
+                  >
+                  <span class="app-color-gray-1 client-info">Male, 32 yr</span>
+                </div>
+              </div>
+            </td>
 
-                    <td class="text-align-center">
-                      <span class="app-color-gray-1 principal-row-name">9999999999</span>
-                    </td>
+            <td class="text-align-center">
+              <span class="app-color-gray-1 principal-row-name"
+                >9999999999</span
+              >
+            </td>
 
-                    <td class="text-align-center">
-                      <span class="app-color-gray-1 principal-row-name">05:10PM</span>
-                    </td>
+            <td class="text-align-center">
+              <span class="app-color-gray-1 principal-row-name">05:10PM</span>
+            </td>
 
-                    <td class="text-align-center">
-                      <div class="app-color-red-1 principal-row-name">56 Mins</div>
-                    </td>
+            <td class="text-align-center">
+              <div class="app-color-red-1 principal-row-name">56 Mins</div>
+            </td>
 
-                    <!-- <td>
+            <!-- <td>
                         <button style="display: flex;
                         padding-top: 0.5rem;
                         padding-bottom: 0.5rem;
@@ -181,32 +203,36 @@
                         height: 1.5rem; " class="app-color-blue-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h.01M12 12h.01M19 12h.01M6 12a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0z"></path></svg>
 
                     </td> -->
-                </tr>
+          </tr>
 
-                  <tr class="app-border-1">
-                    <td>
-                      <div class="client-column">
-                        <div class="client-picture"></div>
-                          <div class="d-flex flex-column">
-                              <span class="app-color-black principal-row-name">Varun Bose</span>
-                              <span class="app-color-gray-1 client-info">Male, 32 yr</span>
-                          </div>
-                      </div>
-                    </td>
+          <tr class="app-border-1">
+            <td>
+              <div class="client-column">
+                <div class="client-picture"></div>
+                <div class="d-flex flex-column">
+                  <span class="app-color-black principal-row-name"
+                    >Varun Bose</span
+                  >
+                  <span class="app-color-gray-1 client-info">Male, 32 yr</span>
+                </div>
+              </div>
+            </td>
 
-                    <td class="text-align-center">
-                      <span class="app-color-gray-1 principal-row-name">9999999999</span>
-                    </td>
+            <td class="text-align-center">
+              <span class="app-color-gray-1 principal-row-name"
+                >9999999999</span
+              >
+            </td>
 
-                    <td class="text-align-center">
-                      <span class="app-color-gray-1 principal-row-name">05:10PM</span>
-                    </td>
+            <td class="text-align-center">
+              <span class="app-color-gray-1 principal-row-name">05:10PM</span>
+            </td>
 
-                    <td class="text-align-center">
-                      <div class="app-color-red-1 principal-row-name">56 Mins</div>
-                    </td>
+            <td class="text-align-center">
+              <div class="app-color-red-1 principal-row-name">56 Mins</div>
+            </td>
 
-                    <!-- <td>
+            <!-- <td>
                         <button style="display: flex;
                         padding-top: 0.5rem;
                         padding-bottom: 0.5rem;
@@ -226,32 +252,36 @@
                         height: 1.5rem; " class="app-color-blue-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h.01M12 12h.01M19 12h.01M6 12a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0z"></path></svg>
 
                     </td> -->
-                </tr>
+          </tr>
 
-                  <tr class="app-border-1">
-                    <td>
-                      <div class="client-column">
-                        <div class="client-picture"></div>
-                          <div class="d-flex flex-column">
-                              <span class="app-color-black principal-row-name">Varun Bose</span>
-                              <span class="app-color-gray-1 client-info">Male, 32 yr</span>
-                          </div>
-                      </div>
-                    </td>
+          <tr class="app-border-1">
+            <td>
+              <div class="client-column">
+                <div class="client-picture"></div>
+                <div class="d-flex flex-column">
+                  <span class="app-color-black principal-row-name"
+                    >Varun Bose</span
+                  >
+                  <span class="app-color-gray-1 client-info">Male, 32 yr</span>
+                </div>
+              </div>
+            </td>
 
-                    <td class="text-align-center">
-                      <span class="app-color-gray-1 principal-row-name">9999999999</span>
-                    </td>
+            <td class="text-align-center">
+              <span class="app-color-gray-1 principal-row-name"
+                >9999999999</span
+              >
+            </td>
 
-                    <td class="text-align-center">
-                      <span class="app-color-gray-1 principal-row-name">05:10PM</span>
-                    </td>
+            <td class="text-align-center">
+              <span class="app-color-gray-1 principal-row-name">05:10PM</span>
+            </td>
 
-                    <td class="text-align-center">
-                      <div class="app-color-red-1 principal-row-name">56 Mins</div>
-                    </td>
+            <td class="text-align-center">
+              <div class="app-color-red-1 principal-row-name">56 Mins</div>
+            </td>
 
-                    <!-- <td>
+            <!-- <td>
                         <button style="display: flex;
                         padding-top: 0.5rem;
                         padding-bottom: 0.5rem;
@@ -271,10 +301,9 @@
                         height: 1.5rem; " class="app-color-blue-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h.01M12 12h.01M19 12h.01M6 12a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0z"></path></svg>
 
                     </td> -->
-                </tr>
-            </tbody>
-        </table>
+          </tr>
+        </tbody>
+      </table>
     </div>
   </div>
 </main>
-

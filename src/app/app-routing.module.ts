@@ -2,11 +2,11 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { CalendarComponent } from './calendar/calendar.component';
-import { CustomersComponent } from './customers/customers.component';
 import { SchedulingComponent } from './scheduling/scheduling.component';
 import { ServicosComponent } from './servicos/servicos.component';
 import { FinanceComponent } from './finance/finance.component';
 import { SettingsComponent } from './settings/settings.component';
+import { CustomersComponent } from './customers/components/customers.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/dashboard', pathMatch: 'full' },

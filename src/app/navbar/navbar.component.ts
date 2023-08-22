@@ -19,7 +19,7 @@ export class NavbarComponent implements OnInit {
   }
 
   ngOnInit() {
-      this.theme();
+    this.theme();
   }
 
   theme(): any {

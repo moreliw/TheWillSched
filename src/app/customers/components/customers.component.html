@@ -1,0 +1,43 @@
+<div class="customers">
+  <div class="header">
+    <div class="left">
+      <h1>Clientes</h1>
+    </div>
+    <div>
+      <button class="button-customer" (click)="openModal()">
+        <div class="svg-wrapper">
+          <i class="bx bx-plus test"></i>
+        </div>
+        <span>Cliente</span>
+      </button>
+    </div>
+  </div>
+  <ul class="insights">
+    <li *ngFor="let cliente of customers">
+      <div class="d-flex">
+        <span class="info">
+          <h3>{{ cliente.nome }}</h3>
+          <p>{{ formatarNumeroTelefone(cliente.telefone) }}</p>
+          <p>{{ cliente.email }}</p>
+        </span>
+        <div class="button-card">
+          <button>
+            <i
+              class="bx bxs-edit icon-button mr-1"
+              ngbTooltip="Editar"
+              (click)="openEditModal(cliente)"
+            ></i>
+          </button>
+          <button>
+            <i
+              class="bx bx-trash icon-button"
+              ngbTooltip="Excluir"
+              (click)="openConfirmationModal(cliente.id)"
+            ></i>
+          </button>
+        </div>
+      </div>
+    </li>
+  </ul>
+</div>
+<app-loading *ngIf="loading"></app-loading>
