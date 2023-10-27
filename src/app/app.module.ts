@@ -5,7 +5,7 @@ import { CalendarComponent } from './calendar/calendar.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { UtilbarComponent } from './utilbar/utilbar.component';
-import { SchedulingComponent } from './scheduling/scheduling.component';
+import { SchedulingComponent } from './scheduling/components/scheduling.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { Util } from './shared/common/util';
@@ -19,10 +19,14 @@ import { AppRoutingModule } from './app-routing.module';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { SettingsComponent } from './settings/settings.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { CustomersComponent } from './customers/components/customers.component';
 import { CustomersFormComponent } from './customers/form/customers-form/customers-form.component';
 import { ToastrModule } from 'ngx-toastr';
+import { AuthModule } from './auth/auth.module';
+import { TokenInterceptor } from './auth/interceptors/token.interceptor';
+import { SchedulingFormComponent } from './scheduling/form/scheduling-form/scheduling-form.component';
+import { NgSelectModule } from '@ng-select/ng-select';
 
 @NgModule({
   declarations: [
@@ -38,6 +42,7 @@ import { ToastrModule } from 'ngx-toastr';
     SidebarComponent,
     SettingsComponent,
     CustomersFormComponent,
+    SchedulingFormComponent,
   ],
   imports: [
     BrowserModule,
@@ -53,8 +58,14 @@ import { ToastrModule } from 'ngx-toastr';
     NgbModalModule,
     ReactiveFormsModule,
     ToastrModule.forRoot(),
+    AuthModule,
+    NgSelectModule
   ],
-  providers: [Util, DatePipe],
+  providers: [
+    Util,
+    DatePipe,
+    { provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true },
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

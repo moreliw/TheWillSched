@@ -1,0 +1,62 @@
+<section>
+  <div class="form-box">
+    <div class="form-value">
+      <form action="" #formLogin="ngForm">
+        <div class="logo-div">
+          <img src="../../../assets/images/logo_will_branca.png" class="logo" />
+        </div>
+
+        <h2>Entrar</h2>
+        <div class="input-box">
+          <i class="bx bx-user"></i>
+          <input
+            type="text"
+            class="form-control"
+            id="nomeUsuario"
+            name="nomeUsuario"
+            [(ngModel)]="login.login"
+            #nomeUsuario="ngModel"
+            required
+            autocomplete="off"
+          />
+          <label for="">Usuário</label>
+        </div>
+        <div class="input-box">
+          <i
+            [ngClass]="
+              showPassword ? 'bx bx-show show-cursor' : 'bx bx-hide show-cursor'
+            "
+            (click)="togglePasswordVisibility()"
+          ></i>
+          <input
+            type="{{ showPassword ? 'text' : 'password' }}"
+            class="form-control"
+            id="senha"
+            name="senha"
+            [(ngModel)]="login.senha"
+            #senha="ngModel"
+            required
+          />
+          <label for="">Senha</label>
+        </div>
+        <!-- <div class="forget">
+          <label for=""
+            ><input type="checkbox" />Remember-me<a href="#"
+              >Forget Password</a
+            ></label
+          >
+        </div> -->
+        <button (click)="onLogin()" [disabled]="!formLogin.form.valid">
+          Entrar
+        </button>
+        <div class="register">
+          <p>
+            Não tenho uma conta -
+            <a (click)="onSignUp()">Cadastrar</a>
+          </p>
+        </div>
+      </form>
+    </div>
+  </div>
+</section>
+<app-loading *ngIf="loading"></app-loading>

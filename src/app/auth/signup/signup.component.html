@@ -1,0 +1,115 @@
+<section>
+  <div class="form-box">
+    <div class="form-value">
+      <form action="" #formLogin="ngForm">
+        <div class="logo-div">
+          <img src="../../../assets/images/logo_will_branca.png" class="logo" />
+        </div>
+
+        <h2>Cadastrar</h2>
+        <div
+          *ngIf="message"
+          class="alert alert-danger alert-dismissible fade show"
+          role="alert"
+        >
+          {{ message
+          }}<a href="#" class="close" data-dismiss="alert" aria-label="close">
+            &times;</a
+          >
+          <button
+            type="button"
+            class="close"
+            data-dismiss="alert"
+            aria-label="Close"
+            (click)="$event.preventDefault()"
+          >
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="input-box">
+          <input
+            type="text"
+            class="form-control"
+            id="user"
+            name="user"
+            [(ngModel)]="login.login"
+            #user="ngModel"
+            required
+            autocomplete="off"
+          />
+          <label for="">Nome</label>
+        </div>
+        <div class="input-box">
+          <input
+            type="text"
+            class="form-control"
+            id="user"
+            name="user"
+            [(ngModel)]="login.login"
+            #user="ngModel"
+            required
+            autocomplete="off"
+          />
+          <label for="">Sobrenome</label>
+        </div>
+        <div class="input-box">
+          <input
+            type="text"
+            class="form-control"
+            id="user"
+            name="user"
+            [(ngModel)]="login.login"
+            #user="ngModel"
+            required
+          />
+          <label for="">Email</label>
+        </div>
+        <div class="input-box">
+          <input
+            type="text"
+            class="form-control"
+            id="senha"
+            name="senha"
+            [(ngModel)]="login.senha"
+            #senha="ngModel"
+            required
+          />
+          <label for="">Usuário</label>
+        </div>
+        <div class="input-box">
+          <input
+            type="password"
+            class="form-control"
+            id="senha"
+            name="senha"
+            [(ngModel)]="login.senha"
+            #senha="ngModel"
+            required
+          />
+          <label for="">Senha</label>
+        </div>
+        <div class="input-box">
+          <input
+            type="password"
+            class="form-control"
+            id="senha"
+            name="senha"
+            [(ngModel)]="login.senha"
+            #senha="ngModel"
+            required
+          />
+          <label for="">Confirme sua senha</label>
+        </div>
+        <button (click)="onLogin()" [disabled]="!formLogin.form.valid">
+          Cadastrar
+        </button>
+        <div class="register">
+          <p>
+            Já tenho uma conta -
+            <a (click)="logIn()">Entrar</a>
+          </p>
+        </div>
+      </form>
+    </div>
+  </div>
+</section>

@@ -2,16 +2,8 @@
   <div class="header">
     <div class="left">
       <h1>Dashboard</h1>
-      <!-- <ul class="breadcrumb">
-            <li><a href="#">
-                    Analytics
-                </a></li>
-            /
-            <li><a href="#" class="active">Shop</a></li>
-        </ul> -->
     </div>
   </div>
-
   <ul class="insights">
     <li>
       <i class="bx bx-calendar-check"></i>
@@ -20,10 +12,10 @@
         <p>Agendamentos</p>
       </span>
     </li>
-    <li>
+    <li (click)="goTo('customers')">
       <i class="bx bx-group"></i>
       <span class="info">
-        <h3>30</h3>
+        <h3>{{ customers }}</h3>
         <p>Clientes</p>
       </span>
     </li>

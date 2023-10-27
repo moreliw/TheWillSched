@@ -14,10 +14,10 @@ a {
   background: var(--light);
   width: 230px;
   height: 100%;
+  z-index: 2000;
   overflow-x: hidden;
   scrollbar-width: none;
   transition: all 0.3s ease;
-  z-index: 2000;
 }
 
 .sidebar::-webkit-scrollbar {
@@ -42,9 +42,9 @@ a {
   display: flex;
   align-items: center;
   color: var(--primary);
+  z-index: 500;
   padding-bottom: 20px;
   box-sizing: content-box;
-  z-index: 500;
 }
 
 .sidebar .logo .logo-name span {
@@ -148,10 +148,20 @@ a {
   margin: 15px;
 }
 
-li {
-  list-style: none;
+/* Adicione estas regras CSS */
+.sidebar.closed {
+  width: 60px;
 }
 
-a {
-  text-decoration: none;
+.sidebar.closed .side-menu li a {
+  width: calc(60px - (4px * 2));
+  overflow: hidden;
+}
+
+.sidebar.closed .side-menu li a .bx {
+  min-width: calc(60px - ((4px + 6px) * 2));
+}
+
+.sidebar.closed .logo .logo-name span {
+  display: none;
 }

@@ -1,40 +1,37 @@
-import { Component, Input, OnInit } from '@angular/core';
-import {
-  FormBuilder,
-  FormControl,
-  FormGroup,
-  Validators,
-} from '@angular/forms';
-import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
-import { ViaCepModel } from 'src/app/shared/models/viaCepModel';
-import { ViaCepService } from 'src/app/shared/services/viacepapi.service';
-import { CustomerService } from '../../customers.component.service';
-import { ToastrService } from 'ngx-toastr';
 import { formatDate } from '@angular/common';
+import { Component, Input, OnInit } from '@angular/core';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import { ToastrService } from 'ngx-toastr';
+import { SchedulingService } from '../../scheduling.component.service';
+import { CustomerService } from 'src/app/customers/customers.component.service';
+import { Customers } from 'src/app/shared/models/customers';
 
 @Component({
-  selector: 'app-customers-form',
-  templateUrl: './customers-form.component.html',
-  styleUrls: ['./customers-form.component.scss'],
+  selector: 'app-scheduling-form',
+  templateUrl: './scheduling-form.component.html',
+  styleUrls: ['./scheduling-form.component.scss']
 })
-export class CustomersFormComponent implements OnInit {
+export class SchedulingFormComponent implements OnInit {
   @Input() data: any;
   @Input() isEdit = false;
 
-  title = 'Cadastro de Cliente';
+  title = 'Agendar';
   buttonTitle = 'CADASTRAR';
   public customersForm!: FormGroup;
   public loading = false;
+  customers: any = {};
 
   constructor(
     public modal: NgbActiveModal,
-    private viaCepService: ViaCepService,
     private formBuilder: FormBuilder,
-    private customerService: CustomerService,
-    private toastr: ToastrService
+    private schedulingService: SchedulingService,
+    private toastr: ToastrService,
+    private customerService: CustomerService
   ) {}
 
   ngOnInit() {
+    this.loadCustomers();
     if (this.isEdit) {
       this.updateForm(this.data.cliente);
       this.title = 'Atualizar Cliente';
@@ -44,6 +41,20 @@ export class CustomersFormComponent implements OnInit {
     }
   }
 
+  loadCustomers(){
+    this.loading = true;
+
+    this.customerService.getCustomers().subscribe({
+      next: (customers) => {
+        this.customers = customers;
+        this.loading = false;
+      },
+      error: () => {
+        this.loading = false;
+        this.toastr.error('Erro ao carregar clientes.', 'Erro');
+      },
+    });
+  }
   updateForm(data?: any) {
     this.customersForm = this.formBuilder.group({
       nome: new FormControl(data.nome, [Validators.required]),
@@ -115,27 +126,11 @@ export class CustomersFormComponent implements OnInit {
     return event.target.value;
   }
 
-  getAdressCep(cep: any): void {
-    if (cep && cep.length === 8) {
-      this.viaCepService.getAdress(cep).subscribe({
-        next: (data: ViaCepModel | any) => {
-          if (data) {
-            this.customersForm.patchValue({
-              cidade: data.localidade,
-              estado: data.uf,
-            });
-          }
-        },
-        error: () => {},
-      });
-    }
-  }
-
   addCustomer() {
     this.loading = true;
     const customerData = this.customersForm.value;
 
-    this.customerService.addCustomer(customerData).subscribe({
+    this.schedulingService.addScheduling(customerData).subscribe({
       next: () => {
         this.toastr.success('Cliente adicionado com sucesso!', 'Sucesso');
         this.loading = false;
@@ -152,7 +147,7 @@ export class CustomersFormComponent implements OnInit {
     cliente.id = id;
 
     this.loading = true;
-    this.customerService.updateCustomer(id, cliente).subscribe({
+    this.schedulingService.updateScheduling(id, cliente).subscribe({
       next: () => {
         this.toastr.success('Cliente atualizado com sucesso!', 'Sucesso');
         this.loading = false;

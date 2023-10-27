@@ -4,81 +4,9 @@
   flex-direction: row;
   background-color: #ffffff;
   align-items: center;
-  padding: 15px;
+  padding: 1.5rem;
   border-radius: 15px;
   justify-content: space-between;
-}
-
-.app-color-blue-1 {
-  color: #346EE1;
-}
-
-.app-color-blue-3 {
-  color: #A0B4D6;
-}
-
-.app-color-black {
-  color: #3E4350;
-}
-
-.app-color-gray-1 {
-  color: #949AA7;
-}
-
-.app-color-red {
-  color: #949AA7;
-}
-
-.app-bg-blue-1 {
-  background: #346EE1;
-}
-
-.app-bg-blue-2{
-  background: #F5F9FC;
-}
-
-.app-button-shadow {
-  box-shadow: 0px 5px 10px 0px rgb(145 167 210 / 25%);
-}
-
-.app-bg-blue-3 {
-  background: #4A7AE5;
-}
-
-.app-bg-blue-4 {
-  background: #518AEA;
-}
-
-.app-bg-white-1 {
-  background: #F4F8F9;
-}
-
-.app-color-yellow-1 {
-  color: #D7AC67;
-}
-
-.app-bg-yellow-2 {
-  background: #FFF9EB;
-}
-
-.app-bg-yellow-3 {
-  background: #FFBE4E;
-}
-
-.app-border-1 {
-  border: 1px solid #F4F6F9;
-}
-
-.app-color-red-1 {
-  color: #E0899C;
-}
-
-.app-bg-red-2 {
-  background: #FEF5F6;
-}
-
-.app-color-green {
-  color: #0CBDA8;
 }
 
 .active {
@@ -88,10 +16,10 @@
 
 .active::before {
   position: absolute;
-  content: '';
+  content: "";
   width: 4px;
   height: 55%;
-  background-color: #346EE1;
+  background-color: #346ee1;
   top: 20px;
   left: 0;
 }
@@ -107,7 +35,7 @@
   cursor: pointer;
 }
 
-.picture-dr{
+.picture-dr {
   border-radius: 0.75rem;
   height: 2.25rem;
   width: 2.25rem;
@@ -142,7 +70,9 @@
 }
 
 .text-info-bar-manager-2 {
-  font-weight: 600; font-size: 0.75rem; line-height: 1rem;
+  font-weight: 600;
+  font-size: 0.75rem;
+  line-height: 1rem;
 }
 
 .arrow {
@@ -162,7 +92,7 @@
 }
 
 .add-scheduling:hover {
-  background-color: #346EE1;
+  background-color: #346ee1;
   color: #ffffff;
 }
 
@@ -192,7 +122,7 @@
 }
 
 .unselected-tab {
-  background-color: #346EE1;
+  background-color: #346ee1;
   cursor: pointer;
 }
 
@@ -200,12 +130,12 @@
   font-size: 1.875rem;
   line-height: 2.25rem;
   font-weight: 700;
-  color: #346EE1;
+  color: #346ee1;
 }
 
 .tab-text-select-2 {
   font-weight: 700;
-  color: #346EE1;
+  color: #346ee1;
 }
 
 .tab-text-unselect {
@@ -231,7 +161,8 @@
 }
 
 .new-tag {
-  top: 76px; position: absolute;
+  top: 76px;
+  position: absolute;
   padding-top: 0.125rem;
   padding-bottom: 0.125rem;
   padding-left: 0.75rem;
@@ -270,7 +201,7 @@
   border-radius: 9999px;
   width: 2.5rem;
   height: 2.5rem;
-  background-color: #F3F4F6;
+  background-color: #f3f4f6;
 }
 
 .principal-row-name {
@@ -283,4 +214,49 @@
   font-size: 0.75rem;
   line-height: 1rem;
   font-weight: 600;
+}
+
+.principal {
+  padding: 36px 24px;
+}
+
+h1 {
+  font-size: 36px;
+  font-weight: 600;
+}
+
+.date {
+  border-radius: 2rem;
+  padding: 7px;
+  border: none;
+  cursor: pointer;
+}
+
+.date:focus-visible {
+  outline: none;
+}
+
+.date-input {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+@media (min-width: 1400px) {
+  .container,
+  .container-lg,
+  .container-md,
+  .container-sm,
+  .container-xl,
+  .container-xxl {
+    max-width: 100%;
+  }
+}
+
+thead {
+  border-bottom: hidden;
+}
+
+tr {
+  border: none;
 }

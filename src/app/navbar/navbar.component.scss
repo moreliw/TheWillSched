@@ -172,4 +172,9 @@ input:checked + .slider:before {
     background: var(--danger);
     border-radius: 0 36px 36px 0;
   }
+
+  .nav form.show ~ .notif,
+  .nav form.show ~ .profile {
+    display: none;
+  }
 }

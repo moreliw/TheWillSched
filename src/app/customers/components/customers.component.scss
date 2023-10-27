@@ -385,3 +385,12 @@ thead {
   font-size: x-large !important;
   background: none !important;
 }
+
+tbody,
+td,
+tfoot,
+th,
+thead,
+tr {
+  border-style: hidden !important;
+}
