@@ -65,12 +65,6 @@ body {
   font-size: 1.5rem;
 }
 
-button {
-  border-inline: none;
-  border-block: none;
-  background: none;
-}
-
 ol,
 ul {
   padding-left: 0 !important;
@@ -144,36 +138,187 @@ ul {
   color: #0cbda8;
 }
 
-.ng-dropdown-panel {
-  background-color: rgb(231, 231, 231);
-  border-radius: 10px;
-  box-shadow: 12.5px 12.5px 10px rgba(0, 0, 0, 0.015),
-    100px 100px 80px rgba(0, 0, 0, 0.03);
-  padding: 10px;
+.add-button {
+  width: 80px;
+  height: 40px;
+  border-radius: 8px;
+  background: var(--Primary, #57b4fc);
+  display: inline-flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
 }
 
-.ng-dropdown-panel .ng-dropdown-panel-items .ng-option {
-  margin-bottom: 5px;
+.button-content {
+  display: flex;
+  height: 24px;
+  align-items: center;
+  gap: 8px;
+  color: #606060;
+  text-decoration-line: none;
 }
 
-.ng-select.ng-select-single .ng-select-container .ng-value-container .ng-input {
-  background-color: rgb(231, 231, 231);
-  border-radius: 10px;
-  box-shadow: 12.5px 12.5px 10px rgba(0, 0, 0, 0.015),
-    100px 100px 80px rgba(0, 0, 0, 0.03);
-  padding: 10px;
+.button {
+  cursor: pointer;
 }
 
-.ng-select.ng-select-single .ng-select-container .ng-value-container .ng-input {
-  position: relative !important;
-  left: 0;
-  width: 100%;
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  margin-right: 20px;
+  margin-left: 0px;
 }
 
-.arrow-icon::after {
-  content: '\25BC';
+.card-body {
+  padding: 20px !important;
+  margin-top: 1rem !important;
+  padding-top: 0 !important;
+}
+
+.card {
+  margin: 2em !important;
+  border: none !important;
+  overflow: hidden;
+  box-shadow: 0 4px 5px rgba(0, 0, 0, 0.03);
+}
+
+.card-page {
+  filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+}
+
+.up-card-page {
+  height: 8px;
+  border-radius: 0 10px 0 0;
+  background: var(--Primary, #3f94d5);
+}
+
+.up-card-page-gray {
+  height: 8px;
+  border-radius: 0 10px 0 0;
+  background: var(--Primary, #c2c2c2);
+}
+
+h1.titulo-pagina {
+  font-weight: 700;
+  margin: 35px 0 20px;
+  font-size: 1.4rem;
+  color: #606060;
+  padding-left: 15px;
+}
+
+.table-body {
+  border-radius: 20px;
+  padding: 2rem;
+}
+
+.switch {
+  font-size: x-small;
+  position: relative;
+  display: inline-block;
+  width: 3.5em;
+  height: 2em;
+}
+
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
   position: absolute;
-  top: 50%;
-  right: 10px;
-  transform: translateY(-50%);
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #fff;
+  border: 1px solid #adb5bd;
+  transition: 0.4s;
+  border-radius: 30px;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 1.4em;
+  width: 1.4em;
+  border-radius: 20px;
+  left: 0.27em;
+  bottom: 0.25em;
+  background-color: #adb5bd;
+  transition: 0.4s;
+}
+
+input:checked + .slider {
+  background-color: #007bff;
+  border: 1px solid #007bff;
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px #007bff;
+}
+
+input:checked + .slider:before {
+  transform: translateX(1.4em);
+  background-color: #fff;
+}
+
+.card-default,
+.card {
+  margin-top: 3rem;
+  border: none !important;
+  overflow: hidden;
+  box-shadow: 0 4px 5px rgba(0, 0, 0, 0.03);
+}
+
+.card-page {
+  filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+}
+
+.up-card-page {
+  height: 8px;
+  border-radius: 0px 0px 74px 74px;
+  background: var(--Primary, #ced53f);
+}
+
+.up-card-page-gray {
+  height: 8px;
+  border-radius: 0px 0px 74px 74px;
+  background: var(--Primary, #c2c2c2);
+}
+
+.upload-button {
+  display: flex;
+  width: 200px;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+}
+
+.upload-button-content {
+  width: 200px;
+  height: 40px;
+  border-radius: 8px;
+  border: 1px solid #5d6227;
+}
+
+.upload-button-content-inside {
+  display: flex;
+  height: 24px;
+  align-items: center;
+  gap: 8px;
+}
+
+.form-control {
+  font-size: 0.9em !important;
+}
+
+label {
+  font-size: 0.85rem;
+  font-weight: 600;
 }

@@ -33,9 +33,9 @@ export class DashboardComponent implements OnInit {
   loadCustomers(): void {
     this.loading = true;
 
-    this.customerService.getCustomers().subscribe({
+    this.customerService.getAll(1).subscribe({
       next: (customers) => {
-        this.customers = customers.length;
+        this.customers = customers.totalItens;
         this.loading = false;
       },
       error: () => {

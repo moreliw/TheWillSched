@@ -11,6 +11,7 @@ import { Usuario } from './shared/models';
 export class AppComponent implements OnInit {
   title = 'TheWillStock';
   isThemeDarkEnabled: boolean = true;
+  public isToggleSidebar: any;
 
   constructor(private router: Router, private loginService: LoginService) {}
 
@@ -109,5 +110,12 @@ export class AppComponent implements OnInit {
         document.body.classList.remove('dark');
       });
     }
+  }
+
+  toggleSidebar(nac: boolean): boolean {
+    console.log(nac);
+    console.log(!this.isToggleSidebar);
+    
+    return this.isToggleSidebar;
   }
 }

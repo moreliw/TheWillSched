@@ -1,16 +1,11 @@
 import { Component, Input, OnInit } from '@angular/core';
-import {
-  FormBuilder,
-  FormControl,
-  FormGroup,
-  Validators,
-} from '@angular/forms';
-import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ViaCepModel } from 'src/app/shared/models/viaCepModel';
 import { ViaCepService } from 'src/app/shared/services/viacepapi.service';
 import { CustomerService } from '../../customers.component.service';
 import { ToastrService } from 'ngx-toastr';
-import { formatDate } from '@angular/common';
+import { Customer } from 'src/app/models/customer';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-customers-form',
@@ -23,92 +18,51 @@ export class CustomersFormComponent implements OnInit {
 
   title = 'Cadastro de Cliente';
   buttonTitle = 'CADASTRAR';
-  public customersForm!: FormGroup;
+  customersForm: FormGroup;
   public loading = false;
-
+  customer: Customer;
+  id: any;
+  edit = false;
   constructor(
-    public modal: NgbActiveModal,
     private viaCepService: ViaCepService,
     private formBuilder: FormBuilder,
     private customerService: CustomerService,
-    private toastr: ToastrService
-  ) {}
+    private toastr: ToastrService,
+    private route: ActivatedRoute,
+    private router: Router
+  ) {
+    this.customer = new Customer();
+  }
 
   ngOnInit() {
-    if (this.isEdit) {
-      this.updateForm(this.data.cliente);
-      this.title = 'Atualizar Cliente';
-      this.buttonTitle = 'ATUALIZAR';
-    } else {
-      this.initForm();
+    this.customersForm = this.formBuilder.group({
+      nome: ['', Validators.nullValidator],
+      dataNascimento: [
+        '',
+        [Validators.required, Validators.pattern(/^\d{2}\/\d{2}\/\d{4}$/)],
+      ],
+      telefone: ['', Validators.nullValidator],
+      email: ['', Validators.nullValidator],
+      endereco: ['', Validators.nullValidator],
+      cidade: ['', Validators.nullValidator],
+      estado: ['', Validators.nullValidator],
+      cep: ['', Validators.nullValidator],
+    });
+    this.getData();
+  }
+
+  private getData() {
+    this.id = this.route.snapshot.paramMap.get('id');
+
+    if (this.id !== undefined && this.id != null) {
+      this.customerService.getById(this.id).subscribe((result) => {
+        console.log(result);
+        if (result) {
+          this.customer = result.data;
+        }
+      });
+      this.edit = true;
     }
-  }
-
-  updateForm(data?: any) {
-    this.customersForm = this.formBuilder.group({
-      nome: new FormControl(data.nome, [Validators.required]),
-      sobrenome: new FormControl(data.sobrenome, [Validators.required]),
-      dataNascimento: new FormControl(
-        new Date(data.dataNascimento).toISOString().split('T')[0],
-        [Validators.required]
-      ),
-      telefone: new FormControl(data.telefone, [Validators.required]),
-      email: new FormControl(data.email, [Validators.required]),
-      endereco: new FormControl(data.endereco, [Validators.required]),
-      cidade: new FormControl(data.cidade, [Validators.required]),
-      estado: new FormControl(data.estado, [Validators.required]),
-      cep: new FormControl(data.cep, [Validators.required]),
-      dataCadastro: new FormControl(data.dataCadastro, [Validators.required]),
-      dataUltimaAtualizacao: new FormControl(data.dataUltimaAtualizacao, [
-        Validators.required,
-      ]),
-    });
-  }
-
-  initForm() {
-    this.customersForm = this.formBuilder.group({
-      nome: new FormControl('', [Validators.required]),
-      sobrenome: new FormControl('', [Validators.required]),
-      dataNascimento: new FormControl('', [Validators.required]),
-      telefone: new FormControl('', [Validators.required]),
-      email: new FormControl('', [Validators.required]),
-      endereco: new FormControl('', [Validators.required]),
-      cidade: new FormControl('', [Validators.required]),
-      estado: new FormControl('', [Validators.required]),
-      cep: new FormControl('', [Validators.required]),
-      dataCadastro: new FormControl('', [Validators.required]),
-      dataUltimaAtualizacao: new FormControl('', [Validators.required]),
-    });
-  }
-
-  formData() {
-    this.customersForm.patchValue({
-      nome: this.customersForm.value.nome,
-      sobrenome: this.customersForm.value.sobrenome,
-      dataNascimento: formatDate(
-        this.customersForm.value.dataNascimento,
-        'yyyy-MM-dd',
-        'en-US'
-      ),
-      telefone: this.customersForm.value.telefone,
-      email: this.customersForm.value.email,
-      endereco: this.customersForm.value.endereco,
-      cidade: this.customersForm.value.cidade,
-      estado: this.customersForm.value.estado,
-      cep: this.customersForm.value.cep.toString(),
-      dataCadastro: !this.isEdit
-        ? new Date().toISOString()
-        : formatDate(
-            this.customersForm.value.dataCadastro,
-            'yyyy-MM-dd',
-            'en-US'
-          ),
-      dataUltimaAtualizacao: new Date().toISOString(),
-    });
-
-    this.isEdit
-      ? this.updateCustomer(this.data.cliente.id, this.customersForm.value)
-      : this.addCustomer();
   }
 
   cepValue(event: any) {
@@ -139,7 +93,7 @@ export class CustomersFormComponent implements OnInit {
       next: () => {
         this.toastr.success('Cliente adicionado com sucesso!', 'Sucesso');
         this.loading = false;
-        this.closeModal(true);
+        // this.closeModal(true);
       },
       error: () => {
         this.loading = false;
@@ -156,7 +110,7 @@ export class CustomersFormComponent implements OnInit {
       next: () => {
         this.toastr.success('Cliente atualizado com sucesso!', 'Sucesso');
         this.loading = false;
-        this.closeModal(true);
+        // this.closeModal(true);
       },
       error: () => {
         this.loading = false;
@@ -187,7 +141,12 @@ export class CustomersFormComponent implements OnInit {
     }
   }
 
-  closeModal(success: boolean): void {
-    this.modal.close(success);
+  goBack() {
+    const currentUrl = this.route.snapshot.url;
+    if (currentUrl[currentUrl.length - 1].path === 'new') {
+      this.router.navigate(['../'], { relativeTo: this.route });
+    } else {
+      this.router.navigate(['../../'], { relativeTo: this.route });
+    }
   }
 }

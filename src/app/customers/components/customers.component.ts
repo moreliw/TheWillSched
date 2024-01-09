@@ -4,6 +4,10 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { CustomersFormComponent } from '../form/customers-form/customers-form.component';
 import { ToastrService } from 'ngx-toastr';
 import { ConfirmModalComponent } from 'src/app/shared/components/confirm-modal/confirm-modal.component';
+import { Customer } from 'src/app/models/customer';
+import { BaseModel } from 'src/app/models/base-model';
+import { __param } from 'tslib';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-customers',
@@ -12,13 +16,23 @@ import { ConfirmModalComponent } from 'src/app/shared/components/confirm-modal/c
 })
 export class CustomersComponent implements OnInit {
   produtos: any[] = [];
-  customers: any[] | undefined;
+  customers: Customer[] = [];
   loading = false;
+
+  page = {
+    limit: 10,
+    count: 0,
+    offset: 0,
+    descricao: '',
+    ativo: true,
+  };
 
   constructor(
     private customerService: CustomerService,
     private modalService: NgbModal,
-    private toastr: ToastrService
+    private toastr: ToastrService,
+    private router: Router,
+    private route: ActivatedRoute
   ) {}
 
   ngOnInit() {
@@ -32,36 +46,12 @@ export class CustomersComponent implements OnInit {
     this.currentPage = event.pageIndex;
   }
 
-  openModal(): void {
-    const modal = this.modalService.open(CustomersFormComponent, {
-      size: 'lg',
-    });
-
-    modal.result
-      .then((result) => {
-        if (result) {
-          this.loadCustomers();
-        }
-      })
-      .catch(() => {});
+  newCustomer() {
+    this.router.navigate(['./new'], { relativeTo: this.route });
   }
 
-  openEditModal(cliente: any) {
-    const modal = this.modalService.open(CustomersFormComponent, {
-      size: 'lg',
-    });
-    modal.componentInstance.data = {
-      cliente,
-    };
-    modal.componentInstance.isEdit = true;
-
-    modal.result
-      .then((result) => {
-        if (result) {
-          this.loadCustomers();
-        }
-      })
-      .catch(() => {});
+  editCustomer(customer: Customer) {
+    this.router.navigate(['./edit/' + customer.id], { relativeTo: this.route });
   }
 
   deleteCustomer(id: number) {
@@ -96,9 +86,9 @@ export class CustomersComponent implements OnInit {
   loadCustomers(): void {
     this.loading = true;
 
-    this.customerService.getCustomers().subscribe({
-      next: (customers) => {
-        this.customers = customers;
+    this.customerService.getAll(this.page).subscribe({
+      next: (customers: BaseModel<Customer>) => {
+        this.customers = customers.itens;
         this.loading = false;
       },
       error: () => {

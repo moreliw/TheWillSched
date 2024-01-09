@@ -1,18 +1,20 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { HttpClient, HttpParams } from '@angular/common/http';
+import { Observable, catchError } from 'rxjs';
+import { BaseModel } from '../models/base-model';
+import { Customer } from '../models/customer';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class CustomerService {
   private apiUrl = 'https://localhost:44321/api/customer';
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {}
 
-  getCustomers(): Observable<any[]> {
-    return this.http.get<any[]>(`${this.apiUrl}`);
-  }
+  // getCustomers(): Observable<customers[]> {
+  //   return this.http.get<any[]>(`${this.apiUrl}`);
+  // }
 
   addCustomer(customer: any): Observable<any> {
     return this.http.post<any>(`${this.apiUrl}`, customer);
@@ -24,5 +26,23 @@ export class CustomerService {
 
   deleteCustomer(id: number): Observable<any> {
     return this.http.delete<any>(`${this.apiUrl}/${id}`);
+  }
+
+  getAll(param: any): Observable<BaseModel<Customer>> {
+    let params = new HttpParams();
+    if (param) {
+      params = params
+        .set('Page', `${param.offset + 1}`)
+        .set('PageSize', `${param.limit}`)
+        .set('Active', `${param.ativo}`);
+    }
+
+    return this.http.get<BaseModel<Customer>>(`${this.apiUrl}`, {
+      params,
+    });
+  }
+
+  getById(id: string): Observable<BaseModel<Customer>> {
+    return this.http.get<BaseModel<Customer>>(`${this.apiUrl}/getById/${id}`);
   }
 }

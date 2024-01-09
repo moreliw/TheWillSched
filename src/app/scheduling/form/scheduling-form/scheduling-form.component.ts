@@ -1,6 +1,11 @@
 import { formatDate } from '@angular/common';
 import { Component, Input, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import {
+  FormBuilder,
+  FormControl,
+  FormGroup,
+  Validators,
+} from '@angular/forms';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { ToastrService } from 'ngx-toastr';
 import { SchedulingService } from '../../scheduling.component.service';
@@ -10,7 +15,7 @@ import { Customers } from 'src/app/shared/models/customers';
 @Component({
   selector: 'app-scheduling-form',
   templateUrl: './scheduling-form.component.html',
-  styleUrls: ['./scheduling-form.component.scss']
+  styleUrls: ['./scheduling-form.component.scss'],
 })
 export class SchedulingFormComponent implements OnInit {
   @Input() data: any;
@@ -21,7 +26,8 @@ export class SchedulingFormComponent implements OnInit {
   public customersForm!: FormGroup;
   public loading = false;
   customers: any = {};
-
+  cities = ['AAAAAAAAA', 'BBBBBBBB', 'CCCCCCCC'];
+  selectedCity!: string;
   constructor(
     public modal: NgbActiveModal,
     private formBuilder: FormBuilder,
@@ -41,10 +47,10 @@ export class SchedulingFormComponent implements OnInit {
     }
   }
 
-  loadCustomers(){
+  loadCustomers() {
     this.loading = true;
 
-    this.customerService.getCustomers().subscribe({
+    this.customerService.getAll(1).subscribe({
       next: (customers) => {
         this.customers = customers;
         this.loading = false;

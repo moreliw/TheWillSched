@@ -1,43 +1,52 @@
-<div class="customers">
-  <div class="header">
-    <div class="left">
-      <h1>Clientes</h1>
+<div class="card card-default card-page">
+  <div class="up-card-page"></div>
+  <div class="row">
+    <div class="col-sm-6 title-card">
+      <h1 class="titulo-pagina">Clientes</h1>
     </div>
-    <div>
-      <button class="button-customer" (click)="openModal()">
-        <div class="svg-wrapper">
-          <i class="bx bx-plus test"></i>
-        </div>
-        <span>Cliente</span>
-      </button>
+    <div class="add-button col-sm-2 row-button">
+      <a (click)="newCustomer()" class="button-content"
+        ><i class="material-symbols-outlined">add_circle</i>Adicionar</a
+      >
     </div>
   </div>
-  <ul class="insights">
-    <li *ngFor="let cliente of customers">
-      <div class="d-flex">
-        <span class="info">
-          <h3>{{ cliente.nome }}</h3>
-          <p>{{ formatarNumeroTelefone(cliente.telefone) }}</p>
-          <p>{{ cliente.email }}</p>
-        </span>
-        <div class="button-card">
-          <button>
-            <i
-              class="bx bxs-edit icon-button mr-1"
-              ngbTooltip="Editar"
-              (click)="openEditModal(cliente)"
-            ></i>
-          </button>
-          <button>
-            <i
-              class="bx bx-trash icon-button"
-              ngbTooltip="Excluir"
-              (click)="openConfirmationModal(cliente.id)"
-            ></i>
-          </button>
-        </div>
-      </div>
-    </li>
-  </ul>
+
+  <div class="card-body"></div>
+  <div class="table-body">
+    <table>
+      <tr>
+        <th class="text-center">CÓDIGO</th>
+        <th>ATIVO</th>
+        <th>NOME</th>
+        <th>TELEFONE</th>
+        <th>E-MAIL</th>
+        <th class="text-center">DATA CADASTRO</th>
+        <th class="text-center"></th>
+      </tr>
+      <tr *ngFor="let customer of customers">
+        <td class="text-center">
+          {{ customer.id }}
+        </td>
+        <td>
+          <label class="switch">
+            <input type="checkbox" [(ngModel)]="customer.ativo" />
+            <span class="slider"></span>
+          </label>
+        </td>
+
+        <td>{{ customer.nome }}</td>
+        <td>{{ formatarNumeroTelefone(customer.telefone) }}</td>
+        <td>{{ customer.email }}</td>
+        <td class="text-center">
+          {{ customer.dataCadastro | date : "dd/MM/yyyy" }}
+        </td>
+        <td class="text-center">
+          <a (click)="editCustomer(customer)">
+            <i class="material-symbols-outlined button">edit</i>
+          </a>
+        </td>
+      </tr>
+    </table>
+  </div>
 </div>
 <app-loading *ngIf="loading"></app-loading>

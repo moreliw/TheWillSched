@@ -11,6 +11,7 @@ import { LoginComponent } from './auth/login/login.component';
 import { LoginRoutes } from './auth/auth-routing.module';
 import { AuthGuard } from './auth/auth.guard';
 import { SignupComponent } from './auth/signup/signup.component';
+import { CustomersFormComponent } from './customers/form/customers-form/customers-form.component';
 
 const routes: Routes = [
   {
@@ -40,6 +41,16 @@ const routes: Routes = [
   {
     path: 'customers',
     component: CustomersComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'customers/new',
+    component: CustomersFormComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'customers/edit/:id',
+    component: CustomersFormComponent,
     canActivate: [AuthGuard],
   },
   {

@@ -10,7 +10,7 @@ import { ConfirmModalComponent } from './confirm-modal/confirm-modal.component';
     CardComponent,
     PageNotFoundComponent,
     LoadingComponent,
-    ConfirmModalComponent,
+    ConfirmModalComponent
   ],
   imports: [CommonModule],
   exports: [CommonModule, LoadingComponent, ConfirmModalComponent],

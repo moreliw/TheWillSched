@@ -1,5 +1,5 @@
-<app-sidebar *ngIf="usuarioLogado"></app-sidebar>
+<app-sidebar *ngIf="usuarioLogado" [isToggleSidebar]="false"></app-sidebar>
 <div [class.content]="usuarioLogado">
-  <app-navbar *ngIf="usuarioLogado"></app-navbar>
+  <app-navbar *ngIf="usuarioLogado" (toggleSidebarChange)="toggleSidebar($event)"></app-navbar>
   <router-outlet></router-outlet>
 </div>

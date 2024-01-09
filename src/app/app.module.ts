@@ -27,6 +27,7 @@ import { AuthModule } from './auth/auth.module';
 import { TokenInterceptor } from './auth/interceptors/token.interceptor';
 import { SchedulingFormComponent } from './scheduling/form/scheduling-form/scheduling-form.component';
 import { NgSelectModule } from '@ng-select/ng-select';
+import { DropDownComponent } from './shared/components/drop-down/drop-down.component';
 
 @NgModule({
   declarations: [
@@ -43,6 +44,7 @@ import { NgSelectModule } from '@ng-select/ng-select';
     SettingsComponent,
     CustomersFormComponent,
     SchedulingFormComponent,
+    DropDownComponent,
   ],
   imports: [
     BrowserModule,
@@ -59,7 +61,7 @@ import { NgSelectModule } from '@ng-select/ng-select';
     ReactiveFormsModule,
     ToastrModule.forRoot(),
     AuthModule,
-    NgSelectModule
+    NgSelectModule,
   ],
   providers: [
     Util,

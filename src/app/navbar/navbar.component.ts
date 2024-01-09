@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
 
 @Component({
@@ -9,7 +9,9 @@ import { NavigationEnd, Router } from '@angular/router';
 export class NavbarComponent implements OnInit {
   activeRoute: string = '/';
   isThemeDarkEnabled = true;
-
+  isToggleSidebar = false;
+  @Output() toggleSidebarChange = new EventEmitter<boolean>();
+  
   constructor(private router: Router) {
     router.events.subscribe((event) => {
       if (event instanceof NavigationEnd) {
@@ -36,5 +38,9 @@ export class NavbarComponent implements OnInit {
       }
     )
     };
+  }
+
+  toggleSidebar(): void {
+    this.toggleSidebarChange.emit(!this.isToggleSidebar);
   }
  }
