@@ -54,6 +54,51 @@ export class CustomersComponent implements OnInit {
     this.router.navigate(['./edit/' + customer.id], { relativeTo: this.route });
   }
 
+  activateInactivate(customer: Customer) {
+    const modalRef = this.modalService.open(ConfirmModalComponent);
+
+    modalRef.result
+      .then((result) => {
+        this.loading = true;
+        if (result === 'confirm') {
+          this.activateInactivateCustomer(customer.id, customer.ativo);
+        }
+      })
+      .catch(() => {});
+    this.loading = false;
+
+    if (customer.ativo) {
+      modalRef.componentInstance.message =
+        'Tem certeza de que deseja inativar este cliente?';
+    }
+
+    if (!customer.ativo) {
+      modalRef.componentInstance.message =
+        'Tem certeza de que deseja reativar este cliente?';
+    }
+  }
+
+  activateInactivateCustomer(id: number, activate: boolean) {
+    this.customerService.activateInactivate(id).subscribe({
+      next: () => {
+        activate
+          ? this.toastr.success('Cliente reativado com sucesso!', 'Sucesso')
+          : this.toastr.success('Cliente inativado com sucesso!', 'Sucesso');
+        this.loadCustomers();
+        this.loading = false;
+      },
+      error: () => {
+        this.loading = false;
+        activate
+          ? this.toastr.error('Erro ao reativar cliente', 'Não possível exluir')
+          : this.toastr.error(
+              'Erro ao inativar cliente',
+              'Não possível exluir'
+            );
+      },
+    });
+  }
+
   deleteCustomer(id: number) {
     this.customerService.deleteCustomer(id).subscribe({
       next: () => {
@@ -73,12 +118,13 @@ export class CustomersComponent implements OnInit {
 
     modalRef.result
       .then((result) => {
+        this.loading = true;
         if (result === 'confirm') {
           this.deleteCustomer(customerId);
         }
       })
       .catch(() => {});
-
+    this.loading = false;
     modalRef.componentInstance.message =
       'Tem certeza de que deseja excluir este cliente?';
   }
@@ -87,8 +133,8 @@ export class CustomersComponent implements OnInit {
     this.loading = true;
 
     this.customerService.getAll(this.page).subscribe({
-      next: (customers: BaseModel<Customer>) => {
-        this.customers = customers.itens;
+      next: (customers: any) => {
+        this.customers = customers.data;
         this.loading = false;
       },
       error: () => {

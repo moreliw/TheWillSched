@@ -111,3 +111,19 @@ button {
 .cancel-button-content-inside:hover {
   color: #6b2f2f;
 }
+
+.ng-select ::ng-deep .ng-select-container.ng-appearance-outline:after {
+  border: solid 1px #ced53f !important;
+  border-radius: 0.75rem;
+  height: calc(100% - 0.5em);
+  pointer-events: none;
+  transition: border-color 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.ng-select.custom ::ng-deep .ng-select-container {
+  outline: none !important;
+}
+
+.screen {
+  padding: 1rem;
+}

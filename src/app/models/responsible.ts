@@ -1,15 +1,15 @@
-export class Customer {
+export class Responsible {
   id: number;
   nome: string;
+  sobrenome: string;
+  sexo: string;
   dataNascimento: string;
   email: string;
   telefone: number;
   endereco: string;
   cidade: string;
   estado: string;
-  cep: string;
+  cep: number;
   dataCadastro: string;
-  dataUltimaAtualizacao: string;
-  dataDesativacao: string;
-  ativo: boolean;
+  dataAtualizacao: string;
 }

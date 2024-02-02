@@ -1,10 +1,17 @@
 import { Component, OnInit } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { CustomersFormComponent } from '../../customers/form/customers-form/customers-form.component';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { CalendarComponent } from '../../calendar/calendar.component';
 import { DatePipe } from '@angular/common';
 import { SchedulingFormComponent } from '../form/scheduling-form/scheduling-form.component';
+import { SchedulingService } from '../scheduling.component.service';
+import { Scheduling } from 'src/app/models/scheduling';
+import { ToastrService } from 'ngx-toastr';
+import {
+  ESchedulingStatus,
+  ESchedulingStatusDescriptions,
+} from 'src/app/enum/ESchedulingStatus';
 
 @Component({
   selector: 'app-scheduling',
@@ -15,6 +22,17 @@ export class SchedulingComponent implements OnInit {
   selectedDate = this.datePipe.transform(new Date(), 'yyyy-MM-dd');
   allData: any[] = [];
   filteredData: any[] = [];
+  loading = false;
+
+  scheduling: Scheduling[] = [];
+
+  page = {
+    limit: 10,
+    count: 0,
+    offset: 0,
+    descricao: '',
+    ativo: true,
+  };
 
   services = [
     {
@@ -46,10 +64,36 @@ export class SchedulingComponent implements OnInit {
   constructor(
     private modalService: NgbModal,
     private router: Router,
-    private datePipe: DatePipe
+    private datePipe: DatePipe,
+    private route: ActivatedRoute,
+    private schedulingService: SchedulingService,
+    private toastr: ToastrService
   ) {}
   ngOnInit(): void {
-    console.log(this.selectedDate);
+    console.log(this.services);
+    this.loadScheduling();
+  }
+
+  loadScheduling(): void {
+    this.loading = true;
+
+    this.schedulingService.getAll(this.page).subscribe({
+      next: (customers: any) => {
+        this.scheduling = customers.data;
+        this.loading = false;
+      },
+      error: () => {
+        this.loading = false;
+        this.toastr.error('Erro ao carregar clientes.', 'Erro');
+      },
+    });
+  }
+
+  getStatusDescription(status: ESchedulingStatus): string {
+    return (
+      ESchedulingStatusDescriptions[status]?.description ||
+      'Status Desconhecido'
+    );
   }
 
   tabAgendadosSelected: boolean = true;
@@ -90,6 +134,10 @@ export class SchedulingComponent implements OnInit {
     const modalRef = this.modalService.open(CalendarComponent, {
       size: 'lg',
     });
+  }
+
+  newScheduling() {
+    this.router.navigate(['./new'], { relativeTo: this.route });
   }
 
   onDateChange() {

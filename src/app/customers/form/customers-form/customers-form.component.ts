@@ -6,6 +6,7 @@ import { CustomerService } from '../../customers.component.service';
 import { ToastrService } from 'ngx-toastr';
 import { Customer } from 'src/app/models/customer';
 import { ActivatedRoute, Router } from '@angular/router';
+import { formatDate } from '@angular/common';
 
 @Component({
   selector: 'app-customers-form',
@@ -22,7 +23,6 @@ export class CustomersFormComponent implements OnInit {
   public loading = false;
   customer: Customer;
   id: any;
-  edit = false;
   constructor(
     private viaCepService: ViaCepService,
     private formBuilder: FormBuilder,
@@ -48,6 +48,7 @@ export class CustomersFormComponent implements OnInit {
       estado: ['', Validators.nullValidator],
       cep: ['', Validators.nullValidator],
     });
+
     this.getData();
   }
 
@@ -55,18 +56,24 @@ export class CustomersFormComponent implements OnInit {
     this.id = this.route.snapshot.paramMap.get('id');
 
     if (this.id !== undefined && this.id != null) {
-      this.customerService.getById(this.id).subscribe((result) => {
+      this.customerService.getById(this.id).subscribe((result: any) => {
         console.log(result);
         if (result) {
           this.customer = result.data;
+          this.isEdit = true;
+          this.title = 'Editar Cliente';
+          this.buttonTitle = 'ATUALIZAR';
         }
       });
-      this.edit = true;
     }
   }
 
-  cepValue(event: any) {
-    return event.target.value;
+  dateFormated(data: string): string {
+    if (data !== undefined) {
+      return formatDate(data, 'dd/MM/yyyy', 'en-US');
+    }
+
+    return '';
   }
 
   getAdressCep(cep: any): void {

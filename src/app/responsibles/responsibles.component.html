@@ -2,10 +2,10 @@
   <div class="up-card-page"></div>
   <div class="row">
     <div class="col-sm-6 title-card">
-      <h1 class="titulo-pagina">Clientes</h1>
+      <h1 class="titulo-pagina">Responsáveis</h1>
     </div>
     <div class="add-button col-sm-2 row-button">
-      <a (click)="newCustomer()" class="button-content"
+      <a (click)="newResponsible()" class="button-content"
         ><i class="material-symbols-outlined size-button">add_circle</i
         >Adicionar</a
       >
@@ -17,43 +17,38 @@
     <table>
       <tr>
         <th class="text-center">CÓDIGO</th>
-        <th>ATIVO</th>
         <th>NOME</th>
-        <th>TELEFONE</th>
+        <th>SEXO</th>
         <th>E-MAIL</th>
-        <th class="text-center">DATA CADASTRO</th>
+        <th class="text-center">TELEFONE</th>
+
+        <th class="text-center">DATA NASCIMENTO</th>
+
         <th class="text-center"></th>
         <th class="text-center"></th>
       </tr>
-      <tr *ngFor="let customer of customers">
+      <tr *ngFor="let responsible of responsibles">
         <td class="text-center">
-          {{ customer.id }}
+          {{ responsible.id }}
         </td>
-        <td>
-          <label class="switch">
-            <input
-              type="checkbox"
-              [(ngModel)]="customer.ativo"
-              (click)="activateInactivate(customer)"
-            />
-            <span class="slider"></span>
-          </label>
+        <td>{{ responsible.nome }}</td>
+        <td>{{ responsible.sexo }}</td>
+        <td>{{ responsible.email }}</td>
+        <td class="text-center">
+          {{ formatarNumeroTelefone(responsible.telefone) }}
         </td>
 
-        <td>{{ customer.nome }}</td>
-        <td>{{ formatarNumeroTelefone(customer.telefone) }}</td>
-        <td>{{ customer.email }}</td>
         <td class="text-center">
-          {{ customer.dataCadastro | date : "dd/MM/yyyy" }}
+          {{ responsible.dataNascimento | date : "dd/MM/yyyy" }}
         </td>
         <td class="text-center">
-          <a (click)="editCustomer(customer)">
+          <a (click)="editResponsible(responsible)">
             <i class="material-symbols-outlined button-edit">edit</i>
           </a>
         </td>
         <td class="text-center">
-          <a (click)="openConfirmationModal(customer.id)">
-            <i class="material-symbols-outlined button-delete">delete</i>
+          <a (click)="deleteResponsible(responsible)">
+            <i class="material-symbols-outlined button-edit">edit</i>
           </a>
         </td>
       </tr>

@@ -5,12 +5,11 @@ export interface BaseModel<T> {
   totalPaginas: number;
   paginaAtual: number;
   data?: T;
-  // file: string;
+
   messages?: string[];
   statusCode?: number;
   success?: boolean;
 
-  // TODO Remover
   message?: string;
   value?: T;
   errors?: string[];

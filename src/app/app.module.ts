@@ -28,7 +28,8 @@ import { TokenInterceptor } from './auth/interceptors/token.interceptor';
 import { SchedulingFormComponent } from './scheduling/form/scheduling-form/scheduling-form.component';
 import { NgSelectModule } from '@ng-select/ng-select';
 import { DropDownComponent } from './shared/components/drop-down/drop-down.component';
-
+import { ResponsiblesComponent } from './responsibles/responsibles.component';
+import { ResponsibleFormComponent } from './responsibles/responsible-form/responsible-form.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -45,8 +46,11 @@ import { DropDownComponent } from './shared/components/drop-down/drop-down.compo
     CustomersFormComponent,
     SchedulingFormComponent,
     DropDownComponent,
+    ResponsiblesComponent,
+    ResponsibleFormComponent,
   ],
   imports: [
+    NgxMaskModule.forRoot(),
     BrowserModule,
     AppRoutingModule,
     SharedModule,

@@ -1,123 +1,58 @@
-<div class="principal">
-  <div class="header">
-    <div class="left">
-      <h1>Agendamentos</h1>
+<div class="card card-default card-page">
+  <div class="up-card-page"></div>
+  <div class="row">
+    <div class="col-sm-6 title-card">
+      <h1 class="titulo-pagina">Agendamento</h1>
+    </div>
+    <div class="add-button col-sm-2 row-button">
+      <a (click)="newScheduling()" class="button-content"
+        ><i class="material-symbols-outlined size-button">add_circle</i
+        >Adicionar</a
+      >
     </div>
   </div>
 
-  <div class="container">
-    <div class="date-input">
-      <input
-        class="date"
-        type="date"
-        [(ngModel)]="selectedDate"
-        (change)="onDateChange()"
-      />
-    </div>
-    <div>
-      <button class="app-color-blue-1 add-scheduling" (click)="openModal()">
-        <i class="bx bx-plus"></i>Agendamento
-      </button>
-    </div>
-  </div>
-  <div class="table-direction d-flex">
-    <div class="tabs d-flex">
-      <div
-        class="tab-manager d-flex"
-        [class.selected-tab]="tabAgendadosSelected"
-        [class.unselected-tab]="!tabAgendadosSelected"
-        (click)="selecionarAgendados()"
-      >
-        <span
-          [class.tab-text-select]="tabAgendadosSelected"
-          [class.tab-text-unselect]="!tabAgendadosSelected"
-          >06</span
-        >
-        <span
-          [class.tab-text-select-2]="tabAgendadosSelected"
-          [class.tab-text-unselect-2]="!tabAgendadosSelected"
-          >Agendados</span
-        >
-      </div>
+  <div class="card-body"></div>
+  <div class="table-body">
+    <table>
+      <tr>
+        <th class="text-center" width="50px">Nº</th>
+        <th>CLIENTE</th>
+        <th>RESPONSÁVEL</th>
+        <th class="text-center">STATUS</th>
+        <th class="text-center">DATA</th>
+        <th class="text-center">HORA</th>
+        <th>OBSERVAÇÕES</th>
+        <th class="text-center"></th>
+      </tr>
+      <tr *ngFor="let item of scheduling">
+        <td class="text-center">
+          {{ item.id }}
+        </td>
 
-      <div
-        class="tab-manager d-flex"
-        [class.selected-tab]="tabAtendidosSelected"
-        [class.unselected-tab]="!tabAtendidosSelected"
-        (click)="selecionarAtendidos()"
-      >
-        <span
-          [class.tab-text-select]="tabAtendidosSelected"
-          [class.tab-text-unselect]="!tabAtendidosSelected"
-          >02</span
-        >
-        <span
-          [class.tab-text-select-2]="tabAtendidosSelected"
-          [class.tab-text-unselect-2]="!tabAtendidosSelected"
-          >Atendidos</span
-        >
-      </div>
-
-      <div
-        class="tab-manager d-flex"
-        [class.selected-tab]="tabCancelSelected"
-        [class.unselected-tab]="!tabCancelSelected"
-        (click)="selecionarCancelados()"
-      >
-        <span
-          [class.tab-text-select]="tabCancelSelected"
-          [class.tab-text-unselect]="!tabCancelSelected"
-          >05</span
-        >
-        <span
-          [class.tab-text-select-2]="tabCancelSelected"
-          [class.tab-text-unselect-2]="!tabCancelSelected"
-          >Cancelados</span
-        >
-      </div>
-    </div>
-
-    <div class="table">
-      <div *ngIf="newTag" class="app-bg-yellow-3 new-tag">Novo</div>
-      <table class="w-100">
-        <thead>
-          <tr>
-            <th class="app-color-black column-table-left">Cliente</th>
-            <th class="app-color-black column-table-center">Contato</th>
-            <th class="app-color-black column-table-center">Hora</th>
-            <th class="app-color-black column-table-center">Tempo estimado</th>
-            <th></th>
-            <th></th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr class="app-border-1">
-            <td>
-              <div class="client-column">
-                <div class="d-flex flex-column">
-                  <span class="app-color-black principal-row-name"
-                    >Varun Bose</span
-                  >
-                </div>
-              </div>
-            </td>
-
-            <td class="text-align-center">
-              <span class="app-color-gray-1 principal-row-name"
-                >9999999999</span
-              >
-            </td>
-
-            <td class="text-align-center">
-              <span class="app-color-gray-1 principal-row-name">05:10PM</span>
-            </td>
-
-            <td class="text-align-center">
-              <div class="app-color-red-1 principal-row-name">56 Mins</div>
-            </td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
+        <td>{{ item.cliente.nome }}</td>
+        <td>{{ item.responsavel.nome }}</td>
+        <td class="text-center">
+          {{ getStatusDescription(item.status) }}
+        </td>
+        <td class="text-center">
+          {{ item.dataConsulta | date : "dd/MM/yyyy" }}
+        </td>
+        <td class="text-center">
+          {{
+            item.horaConsulta.split(":")[0] +
+              ":" +
+              item.horaConsulta.split(":")[1]
+          }}
+        </td>
+        <td>{{ item.observacoes }}</td>
+        <td class="text-center">
+          <a>
+            <i class="material-symbols-outlined button-delete">delete</i>
+          </a>
+        </td>
+      </tr>
+    </table>
   </div>
 </div>
+<app-loading *ngIf="loading"></app-loading>

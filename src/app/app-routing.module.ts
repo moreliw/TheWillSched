@@ -12,6 +12,9 @@ import { LoginRoutes } from './auth/auth-routing.module';
 import { AuthGuard } from './auth/auth.guard';
 import { SignupComponent } from './auth/signup/signup.component';
 import { CustomersFormComponent } from './customers/form/customers-form/customers-form.component';
+import { SchedulingFormComponent } from './scheduling/form/scheduling-form/scheduling-form.component';
+import { ResponsiblesComponent } from './responsibles/responsibles.component';
+import { ResponsibleFormComponent } from './responsibles/responsible-form/responsible-form.component';
 
 const routes: Routes = [
   {
@@ -36,6 +39,16 @@ const routes: Routes = [
   {
     path: 'scheduling',
     component: SchedulingComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'scheduling/new',
+    component: SchedulingFormComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'scheduling/edit/:id',
+    component: SchedulingFormComponent,
     canActivate: [AuthGuard],
   },
   {
@@ -66,6 +79,21 @@ const routes: Routes = [
   {
     path: 'settings',
     component: SettingsComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'responsible',
+    component: ResponsiblesComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'responsible/new',
+    component: ResponsibleFormComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'responsible/edit/:id',
+    component: ResponsibleFormComponent,
     canActivate: [AuthGuard],
   },
   {

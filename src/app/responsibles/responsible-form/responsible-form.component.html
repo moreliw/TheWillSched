@@ -1,17 +1,17 @@
-<form [formGroup]="customersForm">
+<form [formGroup]="responsibleForm">
   <div class="card card-default card-page">
     <div class="up-card-page-gray"></div>
     <div class="card-body">
       <div class="row">
         <div class="col-sm-6">
-          <h1 class="titulo-pagina">Adicionar cliente</h1>
+          <h1 class="titulo-pagina">{{ title }}</h1>
         </div>
       </div>
-      <fieldset>
+      <fieldset class="screen">
         <div class="form-group row">
           <div class="mb-3">
             <div class="form-group row">
-              <div class="col-lg-5">
+              <div class="col-lg-3">
                 <label>Nome </label>
                 <input
                   class="form-control"
@@ -19,39 +19,36 @@
                   formControlName="nome"
                   maxlength="50"
                   placeholder="Digite aqui"
-                  [(ngModel)]="customer.nome"
+                  [(ngModel)]="responsible.nome"
                 />
+              </div>
+
+              <div class="col-lg-2">
+                <label> Gênero </label>
+                <ng-select
+                  [items]="geners"
+                  bindLabel="nome"
+                  bindValue="id"
+                  [searchable]="false"
+                ></ng-select>
               </div>
 
               <div class="col-lg-3">
                 <label> Data de nascimento </label>
                 <input
                   class="form-control"
-                  [ngModel]="dateFormated(customer.dataNascimento)"
+                  [ngModel]="dateFormated(responsible.dataNascimento)"
                   type="date"
                   formControlName="dataNascimento"
                   maxlength="50"
                   placeholder="Digite aqui"
                 />
               </div>
-
-              <div class="col-lg-4">
-                <label>Telefone </label>
-                <input
-                  class="form-control"
-                  [(ngModel)]="customer.telefone"
-                  type="text"
-                  formControlName="telefone"
-                  maxlength="50"
-                  placeholder="Digite aqui"
-                  mask="(00) 00000-0000"
-                />
-              </div>
             </div>
           </div>
-          <div class="col-lg-12">
+          <div class="mb-3">
             <div class="form-group row">
-              <div class="col-lg-4">
+              <div class="col-lg-3">
                 <label>Email </label>
                 <input
                   class="form-control"
@@ -59,7 +56,20 @@
                   formControlName="email"
                   maxlength="50"
                   placeholder="Digite aqui"
-                  [(ngModel)]="customer.email"
+                  [(ngModel)]="responsible.email"
+                />
+              </div>
+
+              <div class="col-lg-3">
+                <label>Telefone </label>
+                <input
+                  class="form-control"
+                  [(ngModel)]="responsible.telefone"
+                  type="text"
+                  formControlName="telefone"
+                  maxlength="50"
+                  placeholder="Digite aqui"
+                  mask="(00) 00000-0000"
                 />
               </div>
               <div class="col-lg-2">
@@ -70,10 +80,16 @@
                   formControlName="cep"
                   maxlength="50"
                   placeholder="Digite aqui"
-                  [(ngModel)]="customer.cep"
+                  [(ngModel)]="responsible.cep"
+                  (change)="getAdressCep(responsible.cep)"
+                  mask="00000-000"
                 />
               </div>
-              <div class="col-lg-4">
+            </div>
+          </div>
+          <div class="col-lg-12">
+            <div class="form-group row">
+              <div class="col-lg-3">
                 <label>Cidade</label>
                 <input
                   class="form-control"
@@ -81,7 +97,7 @@
                   formControlName="cidade"
                   maxlength="50"
                   placeholder="Digite aqui"
-                  [(ngModel)]="customer.cidade"
+                  [(ngModel)]="responsible.cidade"
                 />
               </div>
               <div class="col-lg-2">
@@ -92,7 +108,7 @@
                   formControlName="estado"
                   maxlength="50"
                   placeholder="Digite aqui"
-                  [(ngModel)]="customer.estado"
+                  [(ngModel)]="responsible.estado"
                 />
               </div>
             </div>

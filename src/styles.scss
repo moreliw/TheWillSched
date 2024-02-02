@@ -1,5 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap");
-// @import "ngx-toastr/toastr";
+@import "~@ng-select/ng-select/themes/material.theme.css";
 :root {
   --light: #f6f6f9;
   --primary: #1976d2;
@@ -321,4 +321,28 @@ input:checked + .slider:before {
 label {
   font-size: 0.85rem;
   font-weight: 600;
+}
+
+.ng-select .ng-select-container {
+  min-height: 0;
+}
+
+.ng-select.ng-select-single .ng-select-container .ng-value-container,
+.ng-select.ng-select-single .ng-select-container .ng-value-container .ng-value {
+  align-self: end;
+  padding-left: 10px;
+}
+
+.ng-select .ng-select-container {
+  width: 100%;
+  font-size: 0.9rem;
+  font-weight: 400;
+  line-height: 1.5;
+  color: var(--bs-body-color);
+  background-color: var(--bs-body-bg);
+  background-clip: padding-box;
+  border: var(--bs-border-width) solid var(--bs-border-color);
+  border-radius: var(--bs-border-radius);
+  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+  height: 2.3rem;
 }

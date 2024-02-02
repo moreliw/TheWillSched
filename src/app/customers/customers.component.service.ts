@@ -12,10 +12,6 @@ export class CustomerService {
 
   constructor(private http: HttpClient) {}
 
-  // getCustomers(): Observable<customers[]> {
-  //   return this.http.get<any[]>(`${this.apiUrl}`);
-  // }
-
   addCustomer(customer: any): Observable<any> {
     return this.http.post<any>(`${this.apiUrl}`, customer);
   }
@@ -28,7 +24,7 @@ export class CustomerService {
     return this.http.delete<any>(`${this.apiUrl}/${id}`);
   }
 
-  getAll(param: any): Observable<BaseModel<Customer>> {
+  getAll(param?: any): Observable<BaseModel<Customer>> {
     let params = new HttpParams();
     if (param) {
       params = params
@@ -44,5 +40,13 @@ export class CustomerService {
 
   getById(id: string): Observable<BaseModel<Customer>> {
     return this.http.get<BaseModel<Customer>>(`${this.apiUrl}/getById/${id}`);
+  }
+
+  activateInactivate(id: number): Observable<BaseModel<Customer>> {
+    const json = { id: id };
+    return this.http.put<BaseModel<Customer>>(
+      `${this.apiUrl}/stateChange/${id}`,
+      json
+    );
   }
 }

@@ -1,17 +1,33 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { BaseModel } from '../models/base-model';
+import { Scheduling } from '../models/scheduling';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class SchedulingService {
-  private apiUrl = 'https://localhost:44321/api/agendamento';
+  private apiUrl = 'https://localhost:44321/api/scheduling';
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {}
 
-  getScheduling(): Observable<any[]> {
-    return this.http.get<any[]>(`${this.apiUrl}`);
+  getAll(param: any): Observable<BaseModel<Scheduling>> {
+    let params = new HttpParams();
+    if (param) {
+      params = params
+        .set('Page', `${param.offset + 1}`)
+        .set('PageSize', `${param.limit}`)
+        .set('Active', `${param.ativo}`);
+    }
+
+    return this.http.get<BaseModel<Scheduling>>(`${this.apiUrl}`, {
+      params,
+    });
+  }
+
+  getById(id: string): Observable<BaseModel<Scheduling>> {
+    return this.http.get<BaseModel<Scheduling>>(`${this.apiUrl}/getById/${id}`);
   }
 
   addScheduling(scheduling: any): Observable<any> {
