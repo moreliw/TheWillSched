@@ -37,10 +37,7 @@ export class CustomersFormComponent implements OnInit {
   ngOnInit() {
     this.customersForm = this.formBuilder.group({
       nome: ['', Validators.nullValidator],
-      dataNascimento: [
-        '',
-        [Validators.required, Validators.pattern(/^\d{2}\/\d{2}\/\d{4}$/)],
-      ],
+      dataNascimento: [new Date(), [Validators.required]],
       telefone: ['', Validators.nullValidator],
       email: ['', Validators.nullValidator],
       endereco: ['', Validators.nullValidator],
@@ -56,15 +53,33 @@ export class CustomersFormComponent implements OnInit {
     this.id = this.route.snapshot.paramMap.get('id');
 
     if (this.id !== undefined && this.id != null) {
+      this.loading = true;
       this.customerService.getById(this.id).subscribe((result: any) => {
-        console.log(result);
         if (result) {
           this.customer = result.data;
+
           this.isEdit = true;
           this.title = 'Editar Cliente';
           this.buttonTitle = 'ATUALIZAR';
+
+          const dataNascimentoFormatted = new Date(this.customer.dataNascimento)
+            .toISOString()
+            .split('T')[0];
+
+          this.customersForm.patchValue({
+            nome: this.customer.nome,
+            dataNascimento: dataNascimentoFormatted,
+            telefone: this.customer.telefone,
+            email: this.customer.email,
+            endereco: this.customer.endereco,
+            cidade: this.customer.cidade,
+            estado: this.customer.estado,
+            cep: this.customer.cep,
+          });
         }
       });
+
+      this.loading = false;
     }
   }
 
@@ -99,8 +114,8 @@ export class CustomersFormComponent implements OnInit {
     this.customerService.addCustomer(customerData).subscribe({
       next: () => {
         this.toastr.success('Cliente adicionado com sucesso!', 'Sucesso');
+        this.goBack();
         this.loading = false;
-        // this.closeModal(true);
       },
       error: () => {
         this.loading = false;
@@ -116,8 +131,8 @@ export class CustomersFormComponent implements OnInit {
     this.customerService.updateCustomer(id, cliente).subscribe({
       next: () => {
         this.toastr.success('Cliente atualizado com sucesso!', 'Sucesso');
+        this.goBack();
         this.loading = false;
-        // this.closeModal(true);
       },
       error: () => {
         this.loading = false;

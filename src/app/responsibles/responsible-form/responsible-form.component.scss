@@ -104,8 +104,8 @@ button {
 }
 
 .buttons-bottom {
-  justify-content: space-evenly;
   margin-top: 5rem;
+  margin-left: 0.2rem;
 }
 
 .cancel-button-content-inside:hover {
@@ -126,4 +126,19 @@ button {
 
 .screen {
   padding: 1rem;
+}
+
+.cancel-button {
+  background: #ff7575;
+  border-radius: 0.4rem;
+  margin-right: 1.5rem;
+}
+
+.cancel-button-content {
+  display: flex;
+  height: 24px;
+  align-items: center;
+  gap: 8px;
+  color: #581010;
+  text-decoration-line: none;
 }

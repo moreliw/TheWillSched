@@ -9,58 +9,67 @@
       </div>
       <fieldset>
         <div class="form-group row">
-          <div class="mb-3">
-            <div class="form-group row">
-              <div class="col-lg-4">
-                <label>Cliente </label>
-                <ng-select
-                  [items]="customers"
-                  bindLabel="nome"
-                  bindValue="id"
-                ></ng-select>
-              </div>
-              <div class="col-lg-4">
-                <label>Cliente </label>
-                <ng-select
-                  [items]="customers"
-                  bindLabel="nome"
-                  bindValue="id"
-                ></ng-select>
-              </div>
-
-              <!-- <div class="col-lg-3">
-                <label> Data de nascimento </label>
-                <input
-                  class="form-control"
-                  [ngModel]="dateFormated(customer.dataNascimento)"
-                  type="date"
-                  formControlName="dataNascimento"
-                  maxlength="50"
-                  placeholder="Digite aqui"
-                />
-              </div> -->
-
-              <!-- <div class="col-lg-4">
-                <label>Telefone </label>
-                <input
-                  class="form-control"
-                  [(ngModel)]="customer.telefone"
-                  type="text"
-                  formControlName="telefone"
-                  maxlength="50"
-                  placeholder="Digite aqui"
-                  mask="(00) 00000-0000"
-                />
-              </div> -->
-            </div>
+          <div class="col-lg-3">
+            <label>Cliente </label>
+            <ng-select
+              [items]="customers"
+              bindLabel="nome"
+              bindValue="id"
+              formControlName="idCliente"
+            ></ng-select>
+          </div>
+          <div class="col-lg-3">
+            <label>Responsável </label>
+            <ng-select
+              [items]="responsibles"
+              bindLabel="nome"
+              bindValue="id"
+              formControlName="idResponsavel"
+            ></ng-select>
+          </div>
+        </div>
+        <div class="form-group row mb-3">
+          <div class="col-lg-3">
+            <label> Data do agendamento </label>
+            <input
+              class="form-control"
+              type="date"
+              formControlName="dataAgendamento"
+              maxlength="50"
+            />
+          </div>
+          <div class="col-lg-3">
+            <label> Hora do agendamento </label>
+            <input
+              class="form-control"
+              type="time"
+              formControlName="horaAgendamento"
+              maxlength="50"
+            />
+          </div>
+        </div>
+        <div class="form-group row mb-3">
+          <div class="col-lg-6">
+            <label> Observações </label>
+            <input
+              class="form-control"
+              type="text"
+              formControlName="observacoes"
+              maxlength="100"
+            />
           </div>
         </div>
         <div class="d-flex row buttons-bottom">
-          <div class="upload-button cancel-button-content mr-3 ml-3 col-lg-2">
-            <a class="cancel-button-content-inside">Cancelar</a>
+          <div class="upload-button cancel-button col-lg-2">
+            <a (click)="goBack()" class="cancel-button-content"> Cancelar </a>
           </div>
-          <div class="add-button col-lg-2">
-            <a class="button-content">Agendar</a>
+          <div
+            class="add-button col-lg-2"
+            (click)="
+              isEdit ? updateScheduling(this.id, scheduling) : addScheduling()
+            "
+          >
+            <a class="button-content"> {{ isEdit ? "Salvar" : "Adicionar" }}</a>
           </div>
         </div>
       </fieldset>

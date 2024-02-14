@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { CustomerService } from '../customers/customers.component.service';
 import { ToastrService } from 'ngx-toastr';
+import { SchedulingService } from '../scheduling/scheduling.component.service';
+import { Scheduling } from '../models/scheduling';
 
 @Component({
   selector: 'app-dashboard',
@@ -11,15 +13,19 @@ import { ToastrService } from 'ngx-toastr';
 export class DashboardComponent implements OnInit {
   public loading: boolean = false;
   public customers: number = 0;
+  public schedulingCount: number = 0;
+  scheduling: Scheduling[] = [];
 
   ngOnInit() {
     this.loadCustomers();
+    this.loadScheduling();
   }
 
   constructor(
     private router: Router,
     private customerService: CustomerService,
-    private toastr: ToastrService
+    private toastr: ToastrService,
+    private schedulingService: SchedulingService
   ) {}
 
   navigateToServicosPage(): void {
@@ -33,9 +39,25 @@ export class DashboardComponent implements OnInit {
   loadCustomers(): void {
     this.loading = true;
 
-    this.customerService.getAll(1).subscribe({
-      next: (customers) => {
-        this.customers = customers.totalItens;
+    this.customerService.getAll().subscribe({
+      next: (customers: any) => {
+        this.customers = customers.data.length;
+        this.loading = false;
+      },
+      error: () => {
+        this.loading = false;
+        this.toastr.error('Erro ao carregar clientes.', 'Erro');
+      },
+    });
+  }
+
+  loadScheduling(): void {
+    this.loading = true;
+
+    this.schedulingService.getAll().subscribe({
+      next: (customers: any) => {
+        this.scheduling = customers.data;
+        this.schedulingCount = this.scheduling.length;
         this.loading = false;
       },
       error: () => {

@@ -50,7 +50,6 @@ import { ResponsibleFormComponent } from './responsibles/responsible-form/respon
     ResponsibleFormComponent,
   ],
   imports: [
-    NgxMaskModule.forRoot(),
     BrowserModule,
     AppRoutingModule,
     SharedModule,

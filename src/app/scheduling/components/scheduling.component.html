@@ -24,6 +24,7 @@
         <th class="text-center">HORA</th>
         <th>OBSERVAÇÕES</th>
         <th class="text-center"></th>
+        <th class="text-center"></th>
       </tr>
       <tr *ngFor="let item of scheduling">
         <td class="text-center">
@@ -32,21 +33,33 @@
 
         <td>{{ item.cliente.nome }}</td>
         <td>{{ item.responsavel.nome }}</td>
-        <td class="text-center">
-          {{ getStatusDescription(item.status) }}
+        <td class="text-center center-align">
+          <div
+            class="status-grid"
+            [class.confirmed]="item.status === 0"
+            [class.done]="item.status === 1"
+            [class.cancel]="item.status === 2"
+          >
+            {{ getStatusDescription(item.status) }}
+          </div>
         </td>
         <td class="text-center">
-          {{ item.dataConsulta | date : "dd/MM/yyyy" }}
+          {{ item.dataAgendamento | date : "dd/MM/yyyy" }}
         </td>
         <td class="text-center">
           {{
-            item.horaConsulta.split(":")[0] +
+            item.horaAgendamento.split(":")[0] +
               ":" +
-              item.horaConsulta.split(":")[1]
+              item.horaAgendamento.split(":")[1]
           }}
         </td>
         <td>{{ item.observacoes }}</td>
-        <td class="text-center">
+        <td class="text-center" [width]="50">
+          <a>
+            <i class="material-symbols-outlined button-edit">edit</i>
+          </a>
+        </td>
+        <td class="text-center" [width]="50">
           <a>
             <i class="material-symbols-outlined button-delete">delete</i>
           </a>

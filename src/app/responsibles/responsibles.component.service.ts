@@ -1,14 +1,15 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
-import { Observable, catchError } from 'rxjs';
+import { Observable } from 'rxjs';
 import { BaseModel } from '../models/base-model';
 import { Responsible } from '../models/responsible';
+import { environment } from 'environments/environment';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ResponsibleService {
-  private apiUrl = 'https://localhost:44321/api/responsible';
+  private apiUrl = `${environment.apiUrl}/responsible`;
 
   constructor(private http: HttpClient) {}
 
@@ -27,8 +28,18 @@ export class ResponsibleService {
   }
 
   getById(id: string): Observable<BaseModel<Responsible>> {
-    return this.http.get<BaseModel<Responsible>>(
-      `${this.apiUrl}/getById/${id}`
-    );
+    return this.http.get<BaseModel<Responsible>>(`${this.apiUrl}/${id}`);
+  }
+
+  addResponsible(responsible: any): Observable<any> {
+    return this.http.post<any>(`${this.apiUrl}`, responsible);
+  }
+
+  updateResponsible(id: number, responsible: any): Observable<any> {
+    return this.http.put<any>(`${this.apiUrl}/${id}`, responsible);
+  }
+
+  deleteResponsible(id: number): Observable<any> {
+    return this.http.delete<any>(`${this.apiUrl}/${id}`);
   }
 }

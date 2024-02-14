@@ -70,7 +70,6 @@ export class SchedulingComponent implements OnInit {
     private toastr: ToastrService
   ) {}
   ngOnInit(): void {
-    console.log(this.services);
     this.loadScheduling();
   }
 
@@ -141,7 +140,6 @@ export class SchedulingComponent implements OnInit {
   }
 
   onDateChange() {
-    console.log(this.selectedDate);
     this.filteredData = this.allData.filter((item) => {
       return item.date === this.selectedDate;
     });

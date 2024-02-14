@@ -156,7 +156,7 @@ ul {
   height: 24px;
   align-items: center;
   gap: 8px;
-  color: #606060;
+  color: #142d54;
   text-decoration-line: none;
 }
 
@@ -345,4 +345,8 @@ label {
   border-radius: var(--bs-border-radius);
   transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
   height: 2.3rem;
+}
+
+.ng-select .ng-select-container .ng-value-container .ng-input > input {
+  padding-left: 10px !important;
 }

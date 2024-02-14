@@ -3,16 +3,17 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { BaseModel } from '../models/base-model';
 import { Scheduling } from '../models/scheduling';
+import { environment } from 'environments/environment';
 
 @Injectable({
   providedIn: 'root',
 })
 export class SchedulingService {
-  private apiUrl = 'https://localhost:44321/api/scheduling';
+  private apiUrl = `${environment.apiUrl}/scheduling`;
 
   constructor(private http: HttpClient) {}
 
-  getAll(param: any): Observable<BaseModel<Scheduling>> {
+  getAll(param?: any): Observable<BaseModel<Scheduling>> {
     let params = new HttpParams();
     if (param) {
       params = params

@@ -8,8 +8,8 @@ export class Scheduling {
   cliente: Customer;
   idResponsavel: number;
   responsavel: Responsible;
-  dataConsulta: string;
-  horaConsulta: string;
+  dataAgendamento: string;
+  horaAgendamento: string;
   status: ESchedulingStatus;
   observacoes: string;
   dataCadastro: string;

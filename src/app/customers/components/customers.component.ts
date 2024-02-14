@@ -144,13 +144,6 @@ export class CustomersComponent implements OnInit {
     });
   }
 
-  showSuccess() {
-    this.toastr.success('everything is broken', 'Major Error', {
-      timeOut: 3000,
-      positionClass: 'toast-top-center',
-    });
-  }
-
   formatarNumeroTelefone(numero: number): string {
     return `(${numero.toString().substring(0, 2)}) ${numero
       .toString()

@@ -6,6 +6,7 @@ import { ResponsibleService } from '../responsibles.component.service';
 import { formatDate } from '@angular/common';
 import { ViaCepService } from 'src/app/shared/services/viacepapi.service';
 import { ViaCepModel } from 'src/app/shared/models/viaCepModel';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-responsible-form',
@@ -20,12 +21,15 @@ export class ResponsibleFormComponent implements OnInit {
   title = 'Cadastro de Responsável';
   buttonTitle = 'CADASTRAR';
   geners = ['Masculiuno', 'Feminino', 'Não binário'];
+  public loading = false;
+
   constructor(
     private route: ActivatedRoute,
     private router: Router,
     private formBuilder: FormBuilder,
     private responsibleService: ResponsibleService,
-    private viaCepService: ViaCepService
+    private viaCepService: ViaCepService,
+    private toastr: ToastrService
   ) {
     this.responsible = new Responsible();
   }
@@ -53,16 +57,75 @@ export class ResponsibleFormComponent implements OnInit {
     this.id = this.route.snapshot.paramMap.get('id');
 
     if (this.id !== undefined && this.id != null) {
+      this.loading = true;
       this.responsibleService.getById(this.id).subscribe((result: any) => {
-        console.log(result);
         if (result) {
           this.responsible = result.data;
           this.isEdit = true;
           this.title = 'Editar Cliente';
           this.buttonTitle = 'ATUALIZAR';
+
+          const dataNascimentoFormatted = new Date(
+            this.responsible.dataNascimento
+          )
+            .toISOString()
+            .split('T')[0];
+
+          const formValues = {
+            nome: this.responsible.nome,
+            dataNascimento: dataNascimentoFormatted,
+            sexo: this.responsible.sexo,
+            email: this.responsible.email,
+            endereco: this.responsible.endereco,
+            cidade: this.responsible.cidade,
+            estado: this.responsible.estado,
+            cep: this.responsible.cep,
+            telefone: this.responsible.telefone,
+          };
+
+          this.responsibleForm.patchValue(formValues);
         }
       });
+
+      this.loading = false;
     }
+  }
+
+  addResponsible() {
+    this.loading = true;
+    const responsibleData = this.responsibleForm.value;
+
+    this.responsibleService.addResponsible(responsibleData).subscribe({
+      next: () => {
+        this.toastr.success('Reponsável cadastrado com sucesso!', 'Sucesso');
+        this.goBack();
+        this.loading = false;
+      },
+      error: () => {
+        this.loading = false;
+        this.toastr.error('Ago deu errado!', 'Não foi possível cadastrar');
+      },
+    });
+  }
+
+  updateResponsible(id: number, responsible: any) {
+    responsible.id = id;
+
+    this.loading = true;
+    this.responsibleService.updateResponsible(id, responsible).subscribe({
+      next: () => {
+        this.toastr.success('Responsável atualizado com sucesso!', 'Sucesso');
+        this.goBack();
+        this.loading = false;
+      },
+      error: () => {
+        this.loading = false;
+        this.toastr.error(
+          'Erro ao atualizar responsável',
+          'Não possível adicionar'
+        );
+      },
+    });
   }
 
   goBack() {

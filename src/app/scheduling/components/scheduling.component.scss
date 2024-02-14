@@ -100,3 +100,28 @@ a:hover {
 .size-button {
   font-size: 1.4rem;
 }
+
+.status-grid {
+  padding-top: 10px;
+  padding-bottom: 10px;
+  border-radius: 2rem;
+  margin-left: 0px !important;
+  width: 50%;
+}
+
+.confirmed {
+  background: #d9de41;
+}
+
+.done {
+  background: #32bd75;
+}
+
+.cancel {
+  background: #c93a3a;
+}
+
+.center-align {
+  display: flex;
+  place-content: center;
+}

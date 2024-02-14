@@ -11,7 +11,7 @@
         <div class="form-group row">
           <div class="mb-3">
             <div class="form-group row">
-              <div class="col-lg-5">
+              <div class="col-lg-4">
                 <label>Nome </label>
                 <input
                   class="form-control"
@@ -19,37 +19,21 @@
                   formControlName="nome"
                   maxlength="50"
                   placeholder="Digite aqui"
-                  [(ngModel)]="customer.nome"
                 />
               </div>
 
-              <div class="col-lg-3">
-                <label> Data de nascimento </label>
+              <div class="col-lg-2">
+                <label>Data de nascimento</label>
                 <input
                   class="form-control"
-                  [ngModel]="dateFormated(customer.dataNascimento)"
                   type="date"
                   formControlName="dataNascimento"
-                  maxlength="50"
                   placeholder="Digite aqui"
-                />
-              </div>
-
-              <div class="col-lg-4">
-                <label>Telefone </label>
-                <input
-                  class="form-control"
-                  [(ngModel)]="customer.telefone"
-                  type="text"
-                  formControlName="telefone"
-                  maxlength="50"
-                  placeholder="Digite aqui"
-                  mask="(00) 00000-0000"
                 />
               </div>
             </div>
           </div>
-          <div class="col-lg-12">
+          <div class="col-lg-12 mb-3">
             <div class="form-group row">
               <div class="col-lg-4">
                 <label>Email </label>
@@ -59,7 +43,31 @@
                   formControlName="email"
                   maxlength="50"
                   placeholder="Digite aqui"
-                  [(ngModel)]="customer.email"
+                />
+              </div>
+              <div class="col-lg-2">
+                <label>Telefone </label>
+                <input
+                  class="form-control"
+                  type="text"
+                  formControlName="telefone"
+                  maxlength="50"
+                  placeholder="Digite aqui"
+                  mask="(00) 00000-0000"
+                />
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-12 mb-3">
+            <div class="form-group row">
+              <div class="col-lg-4">
+                <label>Endereço</label>
+                <input
+                  class="form-control"
+                  type="text"
+                  formControlName="endereco"
+                  maxlength="50"
+                  placeholder="Digite aqui"
                 />
               </div>
               <div class="col-lg-2">
@@ -70,9 +78,13 @@
                   formControlName="cep"
                   maxlength="50"
                   placeholder="Digite aqui"
-                  [(ngModel)]="customer.cep"
+                  (change)="getAdressCep(customer.cep)"
                 />
               </div>
+            </div>
+          </div>
+          <div class="col-lg-12">
+            <div class="form-group row">
               <div class="col-lg-4">
                 <label>Cidade</label>
                 <input
@@ -81,7 +93,6 @@
                   formControlName="cidade"
                   maxlength="50"
                   placeholder="Digite aqui"
-                  [(ngModel)]="customer.cidade"
                 />
               </div>
               <div class="col-lg-2">
@@ -92,20 +103,20 @@
                   formControlName="estado"
                   maxlength="50"
                   placeholder="Digite aqui"
-                  [(ngModel)]="customer.estado"
                 />
               </div>
             </div>
           </div>
         </div>
-        <div class="d-flex row buttons-bottom">
-          <div class="upload-button cancel-button-content mr-3 ml-3 col-lg-2">
-            <a (click)="goBack()" class="cancel-button-content-inside">
-              Cancelar
-            </a>
+        <div class="d-flex row buttons-bottom ml-3">
+          <div class="upload-button cancel-button col-lg-2">
+            <a (click)="goBack()" class="cancel-button-content"> Cancelar </a>
           </div>
-          <div class="add-button col-lg-2">
-            <a class="button-content"> Adicionar</a>
+          <div
+            class="add-button col-lg-2"
+            (click)="isEdit ? updateCustomer(this.id, customer) : addCustomer()"
+          >
+            <a class="button-content"> {{ isEdit ? "Salvar" : "Adicionar" }}</a>
           </div>
         </div>
       </fieldset>
